@@ -3,9 +3,8 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.shortcuts import render_to_response, render, redirect
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt, login_required
-from registration.models import *
-from events.models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -18,6 +17,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import View
 from allauth.socialaccount.models import *
 from django.core.urlresolvers import reverse
+from .models import *
 
 @csrf_exempt
 def buy(request):
@@ -41,7 +41,8 @@ def buy(request):
 					'price': price,
 					'quantity': tmpcachequant,
 					'size': size,
-					'name': name
+					'color': color,
+					'name': name,
 					'executionType': 'buy'
 					}, 
 					timeout = None)	
@@ -54,14 +55,16 @@ def buy(request):
 					'itemID': itemID,
 					'price': price,
 					'quantity': quantity,
-					'executionType': 'buy'
+					'executionType': 'buy',
+					'size': size,
+					'color': color,				
 					'name': name
 					}, 
 					timeout = None)	
-					if len(request.session['item']) == 0:
-						request.session['item'] = [key]
-					else:
-						request.session.append(key)				
+				if len(request.session['item']) == 0:
+					request.session['item'] = [key]
+				else:
+					request.session.append(key)				
 
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart'}
 		return JsonResponse(resp)
@@ -74,10 +77,13 @@ def getcart(request):
 	keys = str(user.id) + "*"
 	cart = cache.keys(keys)	
 	resp = []
+	totalprice = 0
 	for item in cart:
 		tmpitem = cache.get(item)	
 		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
-		resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price})
+		totalprice+=t_price
+
+		resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color']})
 
 	return JsonResponse({'items': resp})
 
@@ -101,7 +107,7 @@ def checkoutcart(request):
 		itemst = Item.objects.get(itemID = itemID)
 		itemst.sales+=1
 
-			cartbody.append('''
+		cartbody.append('''
 						%s  %s  %s  %s
 			
 						''' %(num, name, size, quantity, t_price))
@@ -137,5 +143,20 @@ You have ordered the following items
 	keys = str(user.id) + "*"
 	cart = cache.delete_pattern(keys)		
 
-	resp = {'success': True, 'message': 'Thank you for placing the order. You have been sent a mail regarding your order details'}					
+	resp = {'success': True, 'message': 'Thank you for placing the order. You have been sent a mail regarding your order details'}	
+
+def getitem(request, itemid):
+	# if request.POST:
+		# itemID = request.POST['itemID']
+	item = Item.objects.get(pk = itemid)
+	name = item.name
+	price = item.price
+	pic_f = item.pic_front
+	pic_b = item.pic_back
+	desc = item.description
+	colours = item.colour
+
+	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}	
+	return render(request, 'shop/product.html', context)		
+
 

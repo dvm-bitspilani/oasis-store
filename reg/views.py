@@ -24,4 +24,6 @@ def user_login(request):
 		if user:	
 			login(request, user)
 		else: 
-			return JsonResponse({'message': 'Invalid Credentials'})			
+			return JsonResponse({'message': 'Invalid Credentials'})
+
+						
