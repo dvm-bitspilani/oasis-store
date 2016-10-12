@@ -26,18 +26,20 @@ def index(request):
 
 @csrf_exempt
 def buy(request):
-	user = request.user
-	userp = UserProfile.objects.get(user = request.user)
-	if user is not None:
+	# user = request.user
+	# userp = UserProfile.objects.get(user = request.user)
+	# if user is not None:
 		if request.POST:
+			print(request.POST)
 			itemID = request.POST['itemID']
-			item = Item.objects.get(itemID = itemID)
+			item = Item.objects.get(pk = itemID)
 			quantity = request.POST['quantity']
 			size = request.POST['size']
 			price = item.price
 			name = item.name
 
-			key = (str(user.id) + ',' + str(itemID))
+			# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
+			key = str(itemID)
 			if cache.has_key(key):
 				tmpcache = cache.get(key)
 				tmpcachequant = int(tmpcache['quantity']) + int(quantity)
@@ -70,11 +72,19 @@ def buy(request):
 					request.session['item'] = [key]
 				else:
 					request.session.append(key)
-
-		resp = {'status': True, 'message': item.name + ' added succesfully to the cart'}
-		return JsonResponse(resp)
-	else:
-		return HttpResponseRedirect('../login')
+			# sending data back incase someone does any mischief in price in frontend
+			data = {
+				'itemID': itemID,
+				'price': price,
+				'quantity': quantity,
+				'size': size,
+				'color': color,
+				'name': name
+			}
+			resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
+			return JsonResponse(resp)
+	# else:
+	# 	return HttpResponseRedirect('../login')
 
 @login_required
 def getcart(request):
