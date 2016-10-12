@@ -1,3 +1,6 @@
+{%load static from staticfiles%}
+
+
 <!DOCTYPE html>
 <html>
 
@@ -5,27 +8,27 @@
 <head>
 <!-- Basic -->
 <meta charset="utf-8">
-<title>Oasis Store</title>
+<title>OASIS Store</title>
 <meta name="keywords" content="HTML5 Template" />
 <meta name="description" content="WellDone - Responsive HTML5 Template">
 <meta name="author" content="etheme.com">
-<link rel="shortcut icon" href="favicon.ico">
+<!-- <link rel="shortcut icon" href="{% static 'shop/favicon.ico"> -->
 <!-- Mobile Specific Metas -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Web Fonts  -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
 <!-- Icon Fonts  -->
-<link rel="stylesheet" href="font/style.css">
+<link rel="stylesheet" href="{% static 'shop/font/style.css' %}">
 <!-- Vendor CSS -->
-<link rel="stylesheet" href="vendor/waves/waves.css">
-<link rel="stylesheet" href="vendor/slick/slick.css">
-<link rel="stylesheet" href="vendor/slick/slick-theme.css">
-<link rel="stylesheet" href="vendor/bootstrap-select/bootstrap-select.css">
+<link rel="stylesheet" href="{% static 'shop/vendor/waves/waves.css' %}">
+<link rel="stylesheet" href="{% static 'shop/vendor/slick/slick.css' %}">
+<link rel="stylesheet" href="{% static 'shop/vendor/slick/slick-theme.css' %}">
+<link rel="stylesheet" href="{% static 'shop/vendor/bootstrap-select/bootstrap-select.css' %}">
 <!-- Magnific Popup core CSS file -->
-<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css">
+<link rel="stylesheet" href="{% static 'shop/vendor/magnific-popup/magnific-popup.css' %}">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style-colors.css">
+<link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'shop/css/style-colors.css' %}">
 <!-- Custom Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
@@ -41,7 +44,7 @@
         <![endif]-->
 
 <!-- Modernizr -->
-<script src="vendor/modernizr/modernizr.js"></script>
+<script src="{% static 'shop/vendor/modernizr/modernizr.js' %}"></script>
 </head>
 
 <body>
@@ -61,13 +64,13 @@
   </div>
 </div>
 <!-- / end Modal Search -->
-<div class="wrapper"> 
+<div class="wrapper">
   <!-- Header section -->
   <header class="header header--sticky">
-    <div class="header-line hidden-xs">
+    <!-- <div class="header-line hidden-xs">
       <div class="container">
         <div class="pull-left">
-         
+
         </div>
         <div class="pull-right">
           <div class="user-links">
@@ -79,111 +82,29 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="header__dropdowns-container">
-      <div class="header__dropdowns">
-        <div class="header__search pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button search-open"
-><span class="icon icon-search"></span></a> </div>
-        <div class="header__cart pull-left"><span class="header__cart__indicator hidden-xs">{{totalprice}}</span>
-          <div class="dropdown pull-right"><a href="#" class="btn dropdown-toggle btn--links--dropdown header__cart__button header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-bag-alt"></span><span class="badge badge--menu">2</span></a>
-            <div class="dropdown-menu animated fadeIn shopping-cart" role="menu">
-              <div class="shopping-cart__settings"><a href="#" class="icon icon-gear"></a></div>
-              <div class="shopping-cart__top text-uppercase">Your Cart</div>
-              <ul>
-              {% for item in items %}
-              {% csrf_token %}
-                <li class='shopping-cart__item'>
-                  <div class="shopping-cart__item__image pull-left"><a href="#"><img src="images/products/product.jpg" alt=""/></a></div>
-                  <div class="shopping-cart__item__info">
-                    <div class="shopping-cart__item__info__title">
-                      <h2 class="text-uppercase"><a href="#">{item.name}</a></h2>
-                    </div>
-                    <div class="shopping-cart__item__info__option">Color: {{item.color}}</div>
-                    <div class="shopping-cart__item__info__option">Size: {{item.size}}</div>
-                    <div class="shopping-cart__item__info__price">{{item.t_price}}</div>
-                    <div class="shopping-cart__item__info__qty">Qty:{{item.quantity}}</div>
-                    <div class="shopping-cart__item__info__delete"><a href="#" class="icon icon-clear"></a></div>
-                  </div>
-              {% endfor %}
-              </ul>
-              <div class="shopping-cart__bottom">
-                <div class="pull-left">Subtotal: <span class="shopping-cart__total"> {{totalprice}}</span></div>
-                <div class="pull-right">
-                  <button type="submit" class="btn btn--wd text-uppercase">Checkout</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>        <div class="dropdown pull-right"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-dots"></span></a>
-          <ul class="dropdown-menu ul-row animated fadeIn" role="menu">
-            <li class='li-col currency'>
-            <li class='li-col list-user-menu'>
-			  <h4>My Account</h4>
-              <ul>
-                <li><a href="#">Account</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-</div>
+
     </div>
     <nav class="navbar navbar-wd" id="navbar">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" id="slide-nav"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <!--  Logo  -->          <a class="logo" href="./index-2.html">
-          	<img class="logo-default" src="images/logo.png" alt=""/> 
-          	<img class="logo-mobile" src="images/logo-mobile.png" alt=""/> 
-          	<img class="logo-transparent" src="images/logo-transparent.png" alt=""/> 
-          </a> 
-<!-- End Logo --> 
+          <!--  Logo  -->          <a class="logo" href="../../">
+          	<img class="logo-default" src="{% static 'shop/images/logo.png' %}" alt=""/>
+          	<img class="logo-mobile" src="{% static 'shop/images/logo-mobile.png' %}" alt=""/>
+          	<img class="logo-transparent" src="{% static 'shop/images/logo.png' %}" alt=""/>
+          </a>
+<!-- End Logo -->
         </div>
         <div class="pull-left search-focus-fade" id="slidemenu">
           <div class="slidemenu-close visible-xs">✕</div>
-          <ul class="nav navbar-nav">     
+          <ul class="nav navbar-nav">
             <li> <a href="index-2.html" class="dropdown-toggle"><span class="link-name">Home</span><span class="caret caret--dots"></span></a>
-              <ul class="dropdown-menu animated fadeIn" role="menu">
-                <li><a href="index-layout1.html">SwimWear Layout</a></li>
-                <li><a href="index-layout2.html">Flowers Layout</a></li>
-                <li><a href="index-layout3.html">Travel Layout</a></li>
-                <li><a href="index-layout4.html">IShop Layout</a></li>
-                <li><a href="index-layout5.html">Medicine Layout</a></li>
-                <li><a href="index-layout6.html">Gifts Store Layout</a></li>
-                <li><a href="index-layout7.html">Toy Store Layout</a></li>
-                <li><a href="index-layout8.html">Sport Layout</a></li>
-              </ul>
+
             </li>
-            <li> <a href="index-2.html" class="dropdown-toggle"><span class="link-name">Layouts</span><span class="caret caret--dots"></span></a>
-              <ul class="dropdown-menu animated fadeIn" role="menu">
-                <li><a href="index-2.html">Default</a></li>
-                <li><a href="index-boxed.html">Boxed</a></li>
-                <li><a href="index-full.html">FullWidth</a></li>
-                <li><a href="index-tranparent-header.html">Transparent Header</a></li>
-                <li><a href="index-landing-banners.html">Landing Banners</a></li>
-                <li><a href="index-landing-category.html">Landing Category</a></li>
-                <li><a href="index-landing-content.html">Landing Content</a></li>
-                <li><a href="index-vertical-megamenu.html">Vertical Megamenu</a></li>
-                <li><a href="index-art-catalogue.html">Art catalogue</a></li>
-                <li><a href="index-original.html">Original</a></li>
-                <li><a href="index-intro.html">Intro</a></li>
-                <li><a href="lookbook.html">Lookbook</a></li>
-                <li><a href="index-layout1.html">SwimWear Layout</a></li>
-                <li><a href="index-layout2.html">Flowers Layout</a></li>
-                <li><a href="index-layout3.html">Travel Layout</a></li>
-                <li><a href="index-layout4.html">IShop Layout</a></li>
-                <li><a href="index-layout5.html">Medicine Layout</a></li>
-                <li><a href="index-layout6.html">Gifts Store Layout</a></li>
-                <li><a href="index-layout7.html">Toy Store Layout</a></li>
-                <li><a href="index-layout8.html">Sport Layout</a></li>
-              </ul>
-            </li>
-<li><a href="blog.html"  class="dropdown-toggle"><span class="link-name">BLOG</span><span class="caret caret--dots"></span></a>
-              <ul class="dropdown-menu animated fadeIn" role="menu">
-                <li><a href="blog.html">Blog Posts</a></li>
-                <li><a href="blogpost.html">Blog Post</a></li>
-                <li><a href="blog-right-column.html">Blog With Column</a></li>
-              </ul>
-            </li>
+
+
             <li><a href="listing.html"  class="dropdown-toggle"><span class="link-name">SHOP</span><span class="caret caret--dots"></span></a>
               <ul class="dropdown-menu animated fadeIn" role="menu">
                 <li><a href="listing.html">Listing</a></li>
@@ -283,37 +204,67 @@
                         <li class="title"><a href="listing.html">Tops</a></li>
                       </ul>
                     </li>
-                    <li class="megamenu__columns__bottom-block text-uppercase">
-                      <ul>
-                        <li><span class="icon icon-bag icon--lg"></span><a href="#">SPECIAL OFFER</a></li>
-                        <li><span class="icon icon-shop-label icon--lg"></span><a href="#">UP TO 50% OFF DISCOUNTS</a></li>
-                      </ul>
-                    </li>
-                    <li class="megamenu__columns__side-image"><img src="images/img-megamenu.jpg" alt="Megamenu Image"> </li>
                   </ul>
                 </div>
               </div>
             </li>
-            <li><a href="gallery.html" class="wave"><span class="link-name">Gallery</span></a></li>
-            <li><a href="about.html" class="dropdown-toggle"><span  class="link-name">Pages</span><span class="badge badge--menu">!</span><span class="caret caret--dots"></span></a>
-              <ul class="dropdown-menu animated fadeIn" role="menu">
-                <li><a href="about.html">About</a></li>
-                <li><a href="typography.html">Typography</a></li>
-                <li><a href="sitemap.html">Sitemap</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="create-account.html">Create Account</a></li>
-                <li><a href="logination.html">Logination</a></li>
-              </ul>
-            </li>
+            <li><a href="#order" class="wave"><span class="link-name">Orders</span></a></li>
+
           </ul>
         </div>
+        <div class="header__dropdowns">
+          <div class="header__search pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button search-open"
+  ><span class="icon icon-search"></span></a> </div>
+          <div class="header__cart pull-left"><span class="header__cart__indicator hidden-xs">{{totalprice}}</span>
+            <div class="dropdown pull-right"><a href="#" class="btn dropdown-toggle btn--links--dropdown header__cart__button header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-bag-alt"></span><span class="badge badge--menu cart-items-no">0</span></a>
+              <div class="dropdown-menu animated fadeIn shopping-cart" role="menu">
+                <div class="shopping-cart__settings"><a href="#" class="icon icon-gear"></a></div>
+                <div class="shopping-cart__top text-uppercase">Your Cart</div>
+                <ul id="cart-list">
+
+                  <li class='shopping-cart__item default__item' style="display:none">
+                    <div class="shopping-cart__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product.jpg' %}" alt=""/></a></div>
+                    <div class="shopping-cart__item__info">
+                      <div class="shopping-cart__item__info__title">
+                        <h2 class="text-uppercase"><a href="#"></a></h2>
+                      </div>
+                    <div class="info__option">
+                      <div class="shopping-cart__item__info__color">Color: <span></span></div>
+                      <div class="shopping-cart__item__info__size">Size: <span></span></div>
+                    </div>
+                      <div class="shopping-cart__item__info__price">0</div>
+                      <div class="shopping-cart__item__info__qty">Qty:<span>0</span></div>
+                      <div class="shopping-cart__item__info__delete"><a href="#" class="icon icon-clear delete_item" onclick="delete_item(this)"></a></div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="shopping-cart__bottom">
+                  <div class="pull-left">Subtotal: <span class="shopping-cart__total"> {{totalprice}}</span></div>
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn--wd text-uppercase">Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>        <div class="dropdown pull-right" style="display:none;"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown"><span class="icon icon-dots"></span></a>
+            <ul class="dropdown-menu ul-row animated fadeIn" role="menu">
+              <li class='li-col currency'>
+              <li class='li-col list-user-menu'>
+          <h4>My Account</h4>
+                <ul>
+                  <li><a href="#">Account</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+  </div>
       </div>
     </nav>
   </header>
-  <div id="pageContent"> 
-    
+  <div id="pageContent">
+
     <!-- Breadcrumb section -->
-    
+
     <section class="breadcrumbs breadcrumbs-boxed">
       <div class="container">
         <ol class="breadcrumb breadcrumb--wd pull-left">
@@ -326,24 +277,24 @@
         </ul> -->
       </div>
     </section>
-    
+
     <!-- Content section -->
     <section class="content">
       <div class="container">
         <div class="row product-info-outer">
           <div class="col-sm-4 col-md-4 col-lg-5 hidden-xs">
             <div class="product-main-image">
-              <div class="product-main-image__item"><img class="product-zoom" src='images/products/product-big-1.jpg' data-zoom-image="images/products/product-big-1-zoom.jpg"/></div>
+              <div class="product-main-image__item"><img class="product-zoom" src="{% static 'shop/images/products/product-big-1.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-1-zoom.jpg' %}"/></div>
               <div class="product-main-image__zoom"></div>
             </div>
             <div class="product-images-carousel">
               <ul id="smallGallery">
-                <li><a href="#" data-image="images/products/product-big-1.jpg" data-zoom-image="images/products/product-big-1-zoom.jpg"><img src="images/products/product-small-1.jpg" alt="" /></a></li>
-                <li><a href="#" data-image="images/products/product-big-2.jpg" data-zoom-image="images/products/product-big-2-zoom.jpg"><img src="images/products/product-small-2.jpg" alt="" /></a></li>
-                <li><a href="#" data-image="images/products/product-big-3.jpg" data-zoom-image="images/products/product-big-3-zoom.jpg"><img src="images/products/product-small-3.jpg" alt="" /></a></li>
-                <li><a href="#" data-image="images/products/product-big-4.jpg" data-zoom-image="images/products/product-big-4-zoom.jpg"><img src="images/products/product-small-4.jpg" alt="" /></a></li>
-                <li><a href="#" data-image="images/products/product-big-5.jpg" data-zoom-image="images/products/product-big-5-zoom.jpg"><img src="images/products/product-small-5.jpg" alt="" /></a></li>
-                <li><a href="http://www.youtube.com/watch?v=JW8M32oHTKw" class="video-link"><img src="images/products/product-small-empty.png" alt="" /></a></li>
+                <li><a href="#" data-image="{% static 'shop/images/products/product-big-1.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-1-zoom.jpg' %}"><img src="{% static 'shop/images/products/product-small-1.jpg' %}" alt="" /></a></li>
+                <li><a href="#" data-image="{% static 'shop/images/products/product-big-2.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-2-zoom.jpg' %}"><img src="{% static 'shop/images/products/product-small-2.jpg' %}" alt="" /></a></li>
+                <li><a href="#" data-image="{% static 'shop/images/products/product-big-3.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-3-zoom.jpg' %}"><img src="{% static 'shop/images/products/product-small-3.jpg' %}" alt="" /></a></li>
+                <li><a href="#" data-image="{% static 'shop/images/products/product-big-4.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-4-zoom.jpg' %}"><img src="{% static 'shop/images/products/product-small-4.jpg' %}" alt="" /></a></li>
+                <li><a href="#" data-image="{% static 'shop/images/products/product-big-5.jpg' %}" data-zoom-image="{% static 'shop/images/products/product-big-5-zoom.jpg' %}"><img src="{% static 'shop/images/products/product-small-5.jpg' %}" alt="" /></a></li>
+                <li><a href="http://www.youtube.com/watch?v=JW8M32oHTKw" class="video-link"><img src="{% static 'shop/images/products/product-small-empty.png' %}" alt="" /></a></li>
               </ul>
             </div>
           </div>
@@ -354,11 +305,11 @@
             </div>
             <div class="product-info__sku pull-right"><span class="label label-success">IN STOCK</span></div>
             <ul id="singleGallery" class="visible-xs">
-              <li><img src="images/products/product-big-1.jpg" alt="" /></li>
-              <li><img src="images/products/product-big-2.jpg" alt="" /></li>
-              <li><img src="images/products/product-big-3.jpg" alt="" /></li>
-              <li><img src="images/products/product-big-4.jpg" alt="" /></li>
-              <li><img src="images/products/product-big-5.jpg" alt="" /></li>
+              <li><img src="{% static 'shop/images/products/product-big-1.jpg' %}" alt="" /></li>
+              <li><img src="{% static 'shop/images/products/product-big-2.jpg' %}" alt="" /></li>
+              <li><img src="{% static 'shop/images/products/product-big-3.jpg' %}" alt="" /></li>
+              <li><img src="{% static 'shop/images/products/product-big-4.jpg' %}" alt="" /></li>
+              <li><img src="{% static 'shop/images/products/product-big-5.jpg' %}" alt="" /></li>
             </ul>
             <div class="price-box product-info__price"><span class="price-box__new">{{price}}</span></div>
             <div class="rating product-info__rating hidden-xs"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
@@ -368,7 +319,7 @@
             <div class="row">
               <div class="col-xs-6">
                 <label>Size:</label>
-                <select class="selectpicker"  data-style="select--wd"  data-width="100%">
+                <select class="selectpicker select-size"  data-style="select--wd"  data-width="100%">
                   <option>XS</option>
                   <option>S</option>
                   <option>M</option>
@@ -378,7 +329,7 @@
               </div>
               <div class="col-xs-6">
                 <label>Color:</label>
-                <select class="selectpicker"  data-style="select--wd"  data-width="100%">
+                <select class="selectpicker select-color" data-style="select--wd"  data-width="100%">
                   <option>White</option>
                   <option>Blue</option>
                   <option>Grey</option>
@@ -389,13 +340,13 @@
             <label>Quantity:</label>
             <div class="outer">
               <div class="input-group-qty pull-left"> <span class="pull-left"> </span>
-                <input type="text" name="quant[1]" class="input-number input--wd input-qty pull-left" value="1" min="1" max="100">
+                <input type="text" name="quant[1]" class="input-number input--wd input-qty pull-left select-quantity" value="1" min="1" max="100">
                 <span class="pull-left btn-number-container">
                 <button type="button" class="btn btn-number btn-number--plus" data-type="plus" data-field="quant[1]"> + </button>
                 <button type="button" class="btn btn-number btn-number--minus" disabled="disabled" data-type="minus" data-field="quant[1]"> &#8211; </button>
                 </span> </div>
               <div class="pull-left">
-                <button type = "submit" class="btn btn--wd text-uppercase">Add to Cart</button>
+                <button type = "submit" class="btn btn--wd text-uppercase" id="add-cart">Add to Cart</button>
               </div>
               <div class="social-links social-links--colorize social-links--invert social-links--padding pull-right">
                 <ul>
@@ -411,7 +362,118 @@
               <li><a href="#"><span class="icon icon-mail-fill"></span>Email to friend</a></li>
             </ul>
           </div>
-          <div class="col-sm-12 col-md-4 col-lg-3">
+          <div class="col-sm-6 col-md-3 animation animated fadeInUp" data-animation="fadeInUp" data-animation-delay="0.9s" style="animation-delay: 0.9s;">
+            <h4 class="text-uppercase">New Products</h4>
+            <div class="products-widget card">
+              <div class="products-widget-carousel nav-dot slick-initialized slick-slider slick-vertical">
+                <div aria-live="polite" class="slick-list draggable" tabindex="0" style="height: 354px;"><div class="slick-track" style="opacity: 1; height: 1298px; transform: translate3d(0px, -590px, 0px);"><div class="products-widget__item slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-8.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-6.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide" data-slick-index="0" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-9.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide" data-slick-index="1" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-11.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-8.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-6.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-active" data-slick-index="4" aria-hidden="false" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-9.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-11.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div><div class="products-widget__item slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" style="width: 261px;">
+                  <div class="products-widget__item__image pull-left"><a href="#"><img src="{% static 'shop/images/products/product-8.jpg' %}" alt=""></a></div>
+                  <div class="products-widget__item__info">
+                    <div class="products-widget__item__info__title">
+                      <h2 class="text-uppercase"><a href="#">Fast Seconds Knit White</a></h2>
+                    </div>
+                    <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
+                    <div class="price-box">$65.00</div>
+                  </div>
+                </div></div></div>
+
+
+
+
+              <ul class="slick-dots" style="display: block;"><li class="" aria-hidden="true"><button type="button" data-role="none">1</button></li><li aria-hidden="false" class="slick-active"><button type="button" data-role="none">2</button></li></ul></div>
+            </div>
+          </div>
+          <!-- <div class="col-sm-12 col-md-4 col-lg-3">
             <div class="card">
               <div class="card__row"> You can add your content here, like promotions or some additional info </div>
               <a href="#" class="card__row card__row--icon">
@@ -436,13 +498,13 @@
                 <div class="card__row__title">Free shipping</div>
               </div>
               </a> </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
+    <!--
     <section class="content content--fill">
-      <div class="container"> 
-        <!-- Nav tabs -->
+      <div class="container">
         <ul class="nav nav-tabs nav-tabs--wd" role="tablist">
           <li class="active"><a href="#Tab1" aria-controls="home" role="tab" data-toggle="tab" class="text-uppercase">DESCRIPTION</a></li>
           <li><a href="#Tab2" role="tab" data-toggle="tab" class="text-uppercase">Reviews</a></li>
@@ -450,8 +512,7 @@
           <li><a href="#Tab4" role="tab" data-toggle="tab" class="text-uppercase">CUSTOM TAB</a></li>
           <li><a href="#Tab5" role="tab" data-toggle="tab" class="text-uppercase">Sizing Guide</a></li>
         </ul>
-        
-        <!-- Tab panes -->
+
         <div class="tab-content tab-content--wd">
           <div role="tabpanel" class="tab-pane active" id="Tab1">
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec eros tellus, scelerisque nec, rhoncus eget, sollicitudin eu, vehicula venenatis, tempor vitae, est. Praesent vitae dui. Morbi id tellus. Nullam ac nisi non eros gravida venenatis. Ut euismod, turpis sollicitudin lobortis pellentesque, libero massa dapibus dui, eu dictum justo urna et mi. Integer dictum est vitae sem. Vestibulum justo. Nulla mauris ipsum, convallis ut, vestibulum eu, tincidunt vel, nisi. Curabitur molestie euismod erat. Proin eros odio, mattis rutrum, pulvinar et, egestas vitae, magna. Integer semper, velit ut nisl. Nam lectus nulla, bibendum pretium, dictum a, mattis nec, dolor. Nullam id justo sed diam aliquam tincidunt. </p>
@@ -508,7 +569,7 @@
             </table>
             <p class="color-light">Review by User / (posted on 16/9/2016)</p>
             <div class="divider divider--xs"></div>
-            <h6><strong>WRITE YOUR OWN REVIEW</strong></h6>
+            <h6><strong>WRITE YOUR REVI</strong></h6>
             <p>YOU'RE REVIEWING:  Lorem ipsum dolor sit amet conse ctetur</p>
             <p>HOW DO YOU RATE THIS PRODUCT?</p>
             <div class="divider divider--xs"></div>
@@ -651,22 +712,24 @@
         </div>
       </div>
     </section>
+  -->
     <section class="content">
-      <div class="container"> 
-        
+      <div class="container">
+
         <!-- Modal -->
         <div class="modal quick-view zoom" id="quickView"  style=" opacity: 1">
           <div class="modal-dialog">
             <div class="modal-content"> </div>
           </div>
         </div>
+
         <!-- /.modal -->
-        
+
         <!-- <h2 class="text-center text-uppercase">Upsells Products</h2>
         <div class="row product-carousel mobile-special-arrows animated-arrows product-grid four-in-row">
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-1.jpg" alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-1.jpg' %}" alt=""/></a></div>
               <div class="product-preview__label product-preview__label--left product-preview__label--new"><span>new</span></div>
               <div class="product-preview__label product-preview__label--right product-preview__label--sale"><span>sale<br>
                 -10%</span></div>
@@ -676,13 +739,13 @@
                   <h2><a href="#">Fast Seconds Knit White</a></h2>
                 </div>
                 <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img src="images/colors/blue.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/yellow.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/green.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/dark-grey.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/grey.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/red.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/white.png" width="10" height="10" alt=""/></span></a></li>
+                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/blue.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/yellow.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/green.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/dark-grey.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/grey.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/red.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/white.png' %}" width="10" height="10" alt=""/></span></a></li>
 </ul>
                 <div class="price-box "><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
                 <div class="product-preview__info__description">
@@ -695,20 +758,20 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-2.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-2.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
                   <h2><a href="#">Fast Seconds Knit White</a></h2>
                 </div>
                 <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img src="images/colors/blue.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/yellow.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/green.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/dark-grey.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/grey.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/red.png" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="images/colors/white.png" width="10" height="10" alt=""/></span></a></li>
+                <ul class="options-swatch options-swatch--color">                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/blue.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/yellow.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/green.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/dark-grey.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/grey.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/red.png' %}" width="10" height="10" alt=""/></span></a></li>
+                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/white.png' %}" width="10" height="10" alt=""/></span></a></li>
 </ul>
                 <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
                 <div class="product-preview__info__description">
@@ -721,7 +784,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-3.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-3.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -739,7 +802,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-4.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-4.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -757,7 +820,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-5.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-5.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -775,7 +838,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-6.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-6.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -793,7 +856,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-7.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-7.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -811,7 +874,7 @@
           </div>
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="product.html"><img src="images/products/product-empty.png" data-lazy="images/products/product-8.jpg"  alt=""/></a></div>
+              <div class="product-preview__image"><a href="product.html"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="images/products/product-8.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
@@ -830,41 +893,17 @@
         </div>
       </div>
     </section> -->
-    <!-- End Content section --> 
+    <!-- End Content section -->
   </div>
   <footer class="footer">
-    <div class="footer__links hidden-xs">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="h-links-list">
-              <ul>
-                <li><a href="#">Site Map</a></li>
-                <li><a href="#">Search Terms</a></li>
-                <li><a href="#">Orders and Returns</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">RSS</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="h-links-list text-right">
-              <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Customer Service</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="footer__column-links">
       <div class="back-to-top"> <a href="#top" class="btn btn--round btn--round--lg"><span class="icon-arrow-up"></span></a></div>
       <div class="container">
         <div class="row">
           <div class="col-md-3 hidden-xs hidden-sm"> <!--  Logo  -->            <a class="logo logo--footer" href="index-2.html">
-				<img src="images/logo-transparent.png" alt=""/> 
-            </a> 
+				<img src="{% static 'shop/images/logo.png' %}" alt=""/>
+            </a>
 <!-- End Logo --> </div>
           <div class="col-sm-3 col-md-2 mobile-collapse">
             <h5 class="title text-uppercase mobile-collapse__title">Information </h5>
@@ -911,7 +950,8 @@
           </div>
         </div>
       </div>
-    </div>    <div class="footer__subscribe">
+    </div>
+    <!-- <div class="footer__subscribe">
       <div class="container">
         <div class="row">
           <div class="col-sm-7 col-md-6">
@@ -920,7 +960,7 @@
 			  </div>
 			  <div id="subscribeError">
 				<p>Something went wrong, try refreshing and submitting the form again.</p>
-			  </div>                
+			  </div>
             <form id="subscribe-form" class="subscribe-form" method="post" novalidate>
               <label class="subscribe-form__label text-uppercase pull-left">Subscribe</label>
               <input type="text" class="subscribe-form__input input--wd" placeholder="Your e-mail address" name="subscribemail">
@@ -940,7 +980,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 <div class="footer__settings visible-xs">
       <div class="container text-center">
 	   <div class="dropdown pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown" aria-expanded="false"><span class="header__dropdowns__button__symbol">$</span></a>
@@ -950,11 +990,11 @@
               <li class="currency__item"><a href="#">£ British Pound</a></li>
             </ul>
           </div>
-          <div class="dropdown pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown" aria-expanded="false"><span class="flag"><img src="images/flags/gb.png" alt=""></span></a>
+          <div class="dropdown pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown" aria-expanded="false"><span class="flag"><img src="{% static 'shop/images/flags/gb.png' %}" alt=""></span></a>
             <ul class="dropdown-menu animated fadeIn languages languages--flag" role="menu">
-              <li class="languages__item languages__item--active"><a href="#"><span class="languages__item__flag flag"><img src="images/flags/gb.png" alt=""></span><span class="languages__item__label">En</span></a></li>
-              <li class="languages__item"><a href="#"><span class="languages__item__flag flag"><img src="images/flags/de.png" alt=""></span><span class="languages__item__label">De</span></a></li>
-              <li class="languages__item"><a href="#"><span class="languages__item__flag flag"><img src="images/flags/fr.png" alt=""></span><span class="languages__item__label">Fr</span></a></li>
+              <li class="languages__item languages__item--active"><a href="#"><span class="languages__item__flag flag"><img src="{% static 'shop/images/flags/gb.png' %}" alt=""></span><span class="languages__item__label">En</span></a></li>
+              <li class="languages__item"><a href="#"><span class="languages__item__flag flag"><img src="{% static 'shop/images/flags/de.png' %}" alt=""></span><span class="languages__item__label">De</span></a></li>
+              <li class="languages__item"><a href="#"><span class="languages__item__flag flag"><img src="{% static 'shop/images/flags/fr.png' %}" alt=""></span><span class="languages__item__label">Fr</span></a></li>
             </ul>
           </div>
           <div class="dropdown pull-left"> <a href="#" class="btn dropdown-toggle btn--links--dropdown header__dropdowns__button" data-toggle="dropdown" aria-expanded="false">Account</a>
@@ -968,18 +1008,8 @@
       </div>
     </div>
     <div class="footer__bottom">      <div class="container">
-        <div class="pull-left text-uppercase">© 2016 <a href="#">Welldone :)</a>. All Rights Reserved. </div>
-        <div class="pull-left text-center">
-          <label>Select Store: </label>
-          <div class="select-wrapper">
-              <select class="select--wd select--wd--xs">
-                <option>Store Name 1</option>
-                <option>Store Name 2</option>
-                <option>Store Name 3</option>
-              </select>
-          </div>
-        </div>
-        <div class="pull-right text-uppercase text-right">with love <span class="icon-favorite color-heart"></span> from <a href="http://themeforest.net/user/etheme">etheme</a></div>
+        <!-- <div class="pull-left text-uppercase">© 2016 <a href="#">Welldone :)</a>. All Rights Reserved. </div> -->
+        <div class="pull-right text-uppercase text-right">with love <span class="icon-favorite color-heart"></span> from <a href="#">DVM</a></div>
       </div>
 </div>
   </footer>
@@ -994,25 +1024,25 @@
       <ul class="compare-box__items__list compare-carousel nav-top">
         <li class="compare-box__items__list__item">
           <div class="compare-box__items__list__item__delete"><a href="#" class="icon icon-clear"></a></div>
-          <a href="#"><img src="images/products/product-2.jpg" alt=""></a></li>
+          <a href="#"><img src="{% static 'shop/images/products/product-2.jpg' %}" alt=""></a></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">1</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">2</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">3</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">4</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">5</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
         <li class="compare-box__items__list__item empty">
           <div class="compare-box__items__list__item__num">6</div>
-          <img src="images/products/product-empty.png" alt=""/></li>
+          <img src="{% static 'shop/images/products/product-empty.png' %}" alt=""/></li>
       </ul>
       <div class="compare-box__actions">
         <div class="compare-box__actions__btns"> <a href="#" class="btn btn--wd btn--lg text-uppercase">Compare</a> <a href="#" class="btn btn--wd btn--lg btn--light text-uppercase" id="removeAllCompare">Clear All</a> </div>
@@ -1020,29 +1050,31 @@
     </div>
   </div>
 </div>
-<!-- Vendor --> 
-<!-- jQuery 1.10.1--> 
-<script src="vendor/jquery/jquery.js"></script> 
-<!-- Bootstrap 3--> 
-<script src="vendor/bootstrap/bootstrap.min.js"></script> 
-<!-- Specific Page Vendor --> 
-<script src="vendor/waves/waves.min.js"></script> 
-<script src="vendor/slick/slick.min.js"></script> 
-<script src="vendor/bootstrap-select/bootstrap-select.min.js"></script> 
-<script src="vendor/parallax/jquery.parallax-1.1.3.js"></script> 
-<script src="vendor/waypoints/jquery.waypoints.min.js"></script> 
-<script src="vendor/waypoints/sticky.min.js"></script> 
-<script src="vendor/doubletaptogo/doubletaptogo.js"></script> 
-<script src="vendor/elevatezoom/jquery.elevatezoom.js"></script> 
-<script src="vendor/imagesloaded/imagesloaded.pkgd.min.js"></script> 
-<!-- Magnific Popup core JS file --> 
-<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script> <script src="vendor/countdown/jquery.plugin.min.js"></script> 
-<script src="vendor/countdown/jquery.countdown.min.js"></script> 
-<!-- jQuery form validation --> 
-<script src="vendor/form/jquery.form.js"></script> 
-<script src="vendor/form/jquery.validate.min.js"></script> 
-<!-- Custom --> 
-<script src="js/custom.js"></script> 
+<!-- Vendor -->
+<!-- jQuery 1.10.1-->
+
+<script src="{% static 'shop/vendor/jquery/jquery.js' %}"></script>
+<!-- Bootstrap 3-->
+<script src="{% static 'shop/vendor/bootstrap/bootstrap.min.js' %}"></script>
+<!-- Specific Page Vendor -->
+<script src="{% static 'shop/vendor/waves/waves.min.js' %}"></script>
+<script src="{% static 'shop/vendor/slick/slick.min.js' %}"></script>
+<script src="{% static 'shop/vendor/bootstrap-select/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'shop/vendor/parallax/jquery.parallax-1.1.3.js' %}"></script>
+<script src="{% static 'shop/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'shop/vendor/waypoints/sticky.min.js' %}"></script>
+<script src="{% static 'shop/vendor/doubletaptogo/doubletaptogo.js' %}"></script>
+<script src="{% static 'shop/vendor/elevatezoom/jquery.elevatezoom.js' %}"></script>
+<script src="{% static 'shop/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+<!-- Magnific Popup core JS file -->
+<script src="{% static 'shop/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script> <script src="{% static 'shop/vendor/countdown/jquery.plugin.min.js' %}"></script>
+<script src="{% static 'shop/vendor/countdown/jquery.countdown.min.js' %}"></script>
+<!-- jQuery form validation -->
+<script src="{% static 'shop/vendor/form/jquery.form.js' %}"></script>
+<script src="{% static 'shop/vendor/form/jquery.validate.min.js' %}"></script>
+<!-- Custom -->
+<script src="{% static 'shop/js/custom.js' %}"></script>
+<script src="{% static 'shop/js/script.js' %}"></script>
 </body>
 
 <!-- Mirrored from xena.tonytemplates.com/themeforest/welldone/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Oct 2016 18:08:54 GMT -->

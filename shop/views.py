@@ -20,9 +20,14 @@ from django.core.urlresolvers import reverse
 from .models import *
 
 @csrf_exempt
+def index(request):
+	return render(request, 'shop/index-2.html')
+
+
+@csrf_exempt
 def buy(request):
 	user = request.user
-	userp = UserProfile.objects.get(user = request.user)	
+	userp = UserProfile.objects.get(user = request.user)
 	if user is not None:
 		if request.POST:
 			itemID = request.POST['itemID']
@@ -44,12 +49,12 @@ def buy(request):
 					'color': color,
 					'name': name,
 					'executionType': 'buy'
-					}, 
-					timeout = None)	
+					},
+					timeout = None)
 					# if len(request.session['item']) == 0:
 					# 	request.session['item'] = [key]
 					# else:
-					# 	request.session.append(key)	
+					# 	request.session.append(key)
 			else:
 				cache.set(key, {
 					'itemID': itemID,
@@ -57,29 +62,29 @@ def buy(request):
 					'quantity': quantity,
 					'executionType': 'buy',
 					'size': size,
-					'color': color,				
+					'color': color,
 					'name': name
-					}, 
-					timeout = None)	
+					},
+					timeout = None)
 				if len(request.session['item']) == 0:
 					request.session['item'] = [key]
 				else:
-					request.session.append(key)				
+					request.session.append(key)
 
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart'}
 		return JsonResponse(resp)
 	else:
-		return HttpResponseRedirect('../login')	
+		return HttpResponseRedirect('../login')
 
 @login_required
 def getcart(request):
 	user = request.user
 	keys = str(user.id) + "*"
-	cart = cache.keys(keys)	
+	cart = cache.keys(keys)
 	resp = []
 	totalprice = 0
 	for item in cart:
-		tmpitem = cache.get(item)	
+		tmpitem = cache.get(item)
 		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
 		totalprice+=t_price
 
@@ -89,9 +94,9 @@ def getcart(request):
 
 @login_required
 def checkoutcart(request):
-	user = request.user	
+	user = request.user
 	keys = str(user.id) + "*"
-	cart = cache.keys(keys)	
+	cart = cache.keys(keys)
 	resp = []
 	tt_price = 0
 	num = 1
@@ -109,14 +114,14 @@ def checkoutcart(request):
 
 		cartbody.append('''
 						%s  %s  %s  %s
-			
-						''' %(num, name, size, quantity, t_price))
-		num+=1	
 
-	y = 0	
+						''' %(num, name, size, quantity, t_price))
+		num+=1
+
+	y = 0
 	while y < len(cartbody):
 		tcartbody = cartbody[y] + "\n"
-		y+=1	
+		y+=1
 
 	email = user.username
 	body = '''
@@ -137,13 +142,14 @@ You have ordered the following items
 			bosm2016.settings.EMAIL_HOST_PASSWORD = bosm2016.email_config.config.email_host_pass[1]
 			email.send()
 		except SMTPException:
+
 			bosm2016.settings.EMAIL_HOST_USER = bosm2016.email_config.config.email_host_user[2]
 			bosm2016.settings.EMAIL_HOST_PASSWORD = bosm2016.email_config.config.email_host_pass[2]
-			email.send()		
+			email.send()
 	keys = str(user.id) + "*"
-	cart = cache.delete_pattern(keys)		
+	cart = cache.delete_pattern(keys)
 
-	resp = {'success': True, 'message': 'Thank you for placing the order. You have been sent a mail regarding your order details'}	
+	resp = {'success': True, 'message': 'Thank you for placing the order. You have been sent a mail regarding your order details'}
 
 def getitem(request, itemid):
 	# if request.POST:
@@ -156,7 +162,6 @@ def getitem(request, itemid):
 	desc = item.description
 	colours = item.colour
 
-	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}	
-	return render(request, 'shop/product.html', context)		
-
-
+	# send the user current cart as well..lets say he refreshes the page
+	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
+	return render(request, 'shop/product.html', context)
