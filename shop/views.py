@@ -18,6 +18,8 @@ from django.views.generic import View
 from allauth.socialaccount.models import *
 from django.core.urlresolvers import reverse
 from .models import *
+from django.core.cache import cache
+
 
 @csrf_exempt
 def index(request):
