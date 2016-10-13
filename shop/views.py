@@ -45,7 +45,7 @@ def buy(request):
 		name = item.name
 		# color = item.colour		
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
-		key = (str(itemID) + ',' + str(uid))
+		key = (str(uid) + ',' + str(itemID))
 		if cache.has_key(key):
 			tmpcache = cache.get(key)
 			tmpcachequant = int(tmpcache['quantity']) + int(quantity)
@@ -227,7 +227,8 @@ def final_pay_reg(request):
 
 		return HttpResponseRedirect(b)
 
-	return render('middlepage.html', context={'email_id':request.GET['email']})
+	# return render('middlepage.html', context={'email_id':request.GET['email']})
+	return JsonResponse({'message': 'You have successfully made the payment'})
 
 def apirequest_reg(request):
 	import requests
