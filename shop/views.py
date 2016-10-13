@@ -125,7 +125,7 @@ def getcart(request):
 			tmpitem = cache.get(next(cache.iter_keys(keys)))
 			t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
 			getitem = Item.objects.get(pk = tmpitem['itemID'])
-			itemimg = getitem.pic_front
+			itemimg = getitem.pic_front.url
 			totalprice+=t_price
 
 			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(itemimg)[4:]})
