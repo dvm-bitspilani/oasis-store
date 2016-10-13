@@ -40,6 +40,7 @@ def buy(request):
 		item = Item.objects.get(pk = itemID)
 		quantity = request.POST['quantity']
 		size = request.POST['size']
+		color = request.POST['color']
 		price = item.price
 		name = item.name
 		# color = item.colour
@@ -53,7 +54,7 @@ def buy(request):
 				'price': price,
 				'quantity': tmpcachequant,
 				'size': size,
-				# 'color': color,
+				'color': color,
 				'name': name,
 				'executionType': 'buy'
 				},
@@ -69,7 +70,7 @@ def buy(request):
 				'quantity': quantity,
 				'executionType': 'buy',
 				'size': size,
-				# 'color': color,
+				'color': color,
 				'name': name
 				},
 				timeout = None)
@@ -83,7 +84,7 @@ def buy(request):
 			'price': price,
 			'quantity': quantity,
 			'size': size,
-			# 'color': color,
+			'color': color,
 			'name': name
 		}
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
@@ -105,7 +106,7 @@ def getcart(request):
 
 		resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color']})
 
-	return JsonResponse({'items': resp})
+	return JsonResponse({'items': resp, 'cartid': uid})
 
 def checkoutcart(request):
 	# user = request.user
@@ -124,13 +125,14 @@ def checkoutcart(request):
 		name = tmpitem['name']
 		size = tmpitem['size']
 		itemID = tmpitem['itemID']
+		color = tmpitem['color']
 		itemst = Item.objects.get(itemID = itemID)
 		itemst.sales+=1
 
 		cartbody.append('''
-						%s  %s  %s  %s
+						%s  %s  %s  %s %s
 
-						''' %(num, name, size, quantity, t_price))
+						''' %(num, name, size, quantity, color, t_price))
 		num+=1
 
 	y = 0
@@ -189,3 +191,9 @@ def getall(request):
 	response = {'items': resp}
 
 	return JsonResponse(response)
+
+def removeItem(request):
+	cartuid = request.POST['cartid']
+	cache.delete(cartuid)
+
+	return JsonResponse({'message': 'The following item has been removed from the cart'})
