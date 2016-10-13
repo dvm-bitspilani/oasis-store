@@ -179,7 +179,7 @@ def getitem(request, itemid):
 	desc = item.description
 	colours = item.colour
 	# send the user current cart as well..lets say he refreshes the page
-	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
+	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
 	return render(request, 'shop/product.html', context)
 
 def getall(request):

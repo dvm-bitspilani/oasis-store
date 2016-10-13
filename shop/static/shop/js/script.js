@@ -13,15 +13,15 @@ jQuery(function($){
   var loc=location.href;
 
   var data={};
-
+console.log($('.product-name').attr('data-id'));
 $('#add-cart').click(function(){
   data={
-    'itemID': loc.substring(loc.indexOf('product/')+8,loc.length-1),
+    'itemID': $('.product-name').attr('data-id'),
     'name': $('.product-name').html(),
     'price': $('.product-price').html(),
     'quantity': $('.product-quantity').val(),
     'size': $('.product-size').val(),
-    'color': $('.product-color').val(),
+    // 'color': $('.product-color').val(),
     'img': $('.product-img').attr('src')
   }
 
