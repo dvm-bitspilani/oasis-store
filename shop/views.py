@@ -128,7 +128,7 @@ def getcart(request):
 			itemimg = getitem.pic_front
 			totalprice+=t_price
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': 	pic_f = str(item.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(itemimg)[4:]})
 	except next(cache.iter_keys(keys) == None):
 		pass
 
