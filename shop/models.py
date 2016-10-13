@@ -10,6 +10,7 @@ class Item(models.Model):
 	pic_front = models.ImageField(upload_to = './shop/static/shop/itemspic', null = True)
 	pic_back = models.ImageField(upload_to = './shop/static/shop/itemspic', null = True)
 	colour = models.ManyToManyField('Colours')
+	size = models.ManyToManyField('Size')
 
 	def __unicode__(self):
 		return self.name
@@ -19,4 +20,11 @@ class Colours(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class Size(models.Model):
+	size = models.CharField(max_length = 5, default = '')
+
+	def __unicode__(self):
+		return self.size
+		
 
