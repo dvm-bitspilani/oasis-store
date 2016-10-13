@@ -42,7 +42,7 @@ def buy(request):
 		size = request.POST['size']
 		price = item.price
 		name = item.name
-		# color = item.colour		
+		# color = item.colour
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 		key = (str(itemID) + ',' + str(uid))
 		if cache.has_key(key):
@@ -73,8 +73,8 @@ def buy(request):
 				'name': name
 				},
 				timeout = None)
-			if len(request.session['item']) == 0:
-				request.session['item'] = [key]
+			if len(request.session['uniqueID']) == 0:
+				request.session['uniqueID'] = [key]
 			else:
 				request.session.append(key)
 		# sending data back incase someone does any mischief in price in frontend
@@ -91,7 +91,6 @@ def buy(request):
 	# else:
 	# 	return HttpResponseRedirect('../login')
 
-@login_required
 def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
@@ -108,7 +107,6 @@ def getcart(request):
 
 	return JsonResponse({'items': resp})
 
-@login_required
 def checkoutcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']

@@ -1229,13 +1229,13 @@ input[type=checkbox]:checked ~ label .box {
   }
 }
 .overlay {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.45);
 }
 .overlay .overlay-close {
-  color: #ffffff;
+  color: black;
 }
 .overlay .input-group--wd input {
-  color: #ffffff;
+  color: black;
 }
 /* OPTIONS COLORS */
 .options-swatch li {

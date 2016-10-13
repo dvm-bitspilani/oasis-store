@@ -1,11 +1,28 @@
 window.onload = function(){
   jQuery(function($){
     // get cart from cache
-    // $.ajax({
-    //   type:'GET',
-    //   url:'../../buy/',
-    //
-    // })
+    $.ajax({
+      type:'GET',
+      url:'../../getcart/',
+      success:function(response){
+        data=response['items'];
+        console.log(data);
+        var newItem = $('.default__item').clone();
+        newItem.show();
+        newItem.removeClass('default__item');
+        newItem.find('.shopping-cart__item__info__title').html(data.name);
+        newItem.find('.shopping-cart__item__image img').attr('src',data.img);
+        newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
+        newItem.find('.shopping-cart__item__info__size span').html(data.size);
+        newItem.find('.shopping-cart__item__info__color span').html(data.color);
+        newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
+
+        $('#cart-list').append(newItem);
+        // console.log('hi');
+        updateCart();
+
+      }
+    })
   });
 }
 
