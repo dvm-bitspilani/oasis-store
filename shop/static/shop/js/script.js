@@ -1,44 +1,49 @@
 window.onload = function(){
   jQuery(function($){
     // get cart from cache
-    $.ajax({
-
-    })
+    // $.ajax({
+    //   type:'GET',
+    //   url:'../../buy/',
+    //
+    // })
   });
 }
 
 jQuery(function($){
   var loc=location.href;
 
-  var data={
-    'itemID': loc.substring(loc.indexOf('product/')+8,loc.length-1),
-    'name': $('.product-info__title h2').html(),
-    'price': $('.price-box__new').html(),
-    'quantity': $('.select-quantity').val(),
-    'size': $('.select-size').val(),
-    'color': $('.select-color').val(),
-  }
-
+  var data={};
 
 $('#add-cart').click(function(){
+  data={
+    'itemID': loc.substring(loc.indexOf('product/')+8,loc.length-1),
+    'name': $('.product-name').html(),
+    'price': $('.product-price').html(),
+    'quantity': $('.product-quantity').val(),
+    'size': $('.product-size').val(),
+    'color': $('.product-color').val(),
+    'img': $('.product-img').attr('src')
+  }
 
   $.ajax({
     type:'POST',
-    url:'../../buy',
+    url:'../../buy/',
     data:data,
     success:function(response){
       var respData = response.data;
       console.log(response,respData);
       if(response.status='True'){
         alert(response.message)
+        // add new item
         var newItem = $('.default__item').clone();
         newItem.show();
         newItem.removeClass('default__item');
-        newItem.find('.shopping-cart__item__info__title').html(respData.name);
-        newItem.find('.shopping-cart__item__info__price').html(respData.price);
-        newItem.find('.shopping-cart__item__info__size span').html(respData.size);
-        newItem.find('.shopping-cart__item__info__color span').html(respData.color);
-        newItem.find('.shopping-cart__item__info__qty span').html(respData.qty);
+        newItem.find('.shopping-cart__item__info__title').html(data.name);
+        newItem.find('.shopping-cart__item__image img').attr('src',data.img);
+        newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
+        newItem.find('.shopping-cart__item__info__size span').html(data.size);
+        newItem.find('.shopping-cart__item__info__color span').html(data.color);
+        newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
 
         $('#cart-list').append(newItem);
         // console.log('hi');
