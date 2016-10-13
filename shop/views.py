@@ -108,8 +108,8 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "_*"
-	cart = cache.get(keys)
-	print(uid,keys,cart)
+	cart = cache.get(str(keys))
+	print(uid,keys,cart,cache.items())
 	resp = []
 	totalprice = 0
 	print(cart)
