@@ -120,6 +120,7 @@ def getcart(request):
 	# cart = cache.get(keys)
 	resp = []
 	totalprice = 0
+	keyss = cache.keys(keys)
 	try:
 		# while next(cache.iter_keys(keys)) != None:
 		key = 0
