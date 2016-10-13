@@ -1,3 +1,4 @@
+var cart_id="";
 window.onload = function(){
   jQuery(function($){
     // get cart from cache
@@ -6,6 +7,7 @@ window.onload = function(){
       url:'../../getcart/',
       success:function(response){
         data=response['items'];
+        cart_id=response['cart_id'];
         console.log(data);
         var newItem = $('.default__item').clone();
         newItem.show();
@@ -72,6 +74,21 @@ $('#add-cart').click(function(){
   })
 
 });
+
+$('.delete_item').click(function(){
+  var data={
+    cartid:cart_id,
+    item:'',
+  }
+  $.ajax({
+    type:'POST',
+    url:'../../removecart',
+    data:data,
+    success:function(response){
+
+    }
+  })
+})
 
 $('.icon-clear').click(function(){
 

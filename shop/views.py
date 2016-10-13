@@ -175,9 +175,9 @@ def getitem(request, itemid):
 	pic_f = str(item.pic_front.url)[4:]
 	pic_b = str(item.pic_back.url)[4:]
 	desc = item.description
-	colours = item.colour
+
 	# send the user current cart as well..lets say he refreshes the page
-	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
+	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all()}
 	return render(request, 'shop/product.html', context)
 
 def getall(request):

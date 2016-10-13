@@ -55,9 +55,9 @@
 <div class="overlay overlay-scale">
 
   <div class="overlay__content">
-    <button type="button" class="overlay-close"> ✕ </button><form id="search-form" class="search-form outer" action="#" method="post">
+    <button type="button" class="overlay-close"> ✕ </button><form id="search-form" class="search-form outer" >
       <div class="input-group input-group--wd">
-        <input type="text" class=" input--full" placeholder="Enter Your Email">
+        <input type="text" class=" input--full email" placeholder="Enter Your Email">
         <span class="input-group__bar"></span> </div>
       <button class="btn btn--wd text-uppercase wave waves-effect waves-effect">PROCEED</button>
     </form>
@@ -215,19 +215,19 @@
               <div class="col-xs-6">
                 <label>Size:</label>
                 <select class="selectpicker product-size"  data-style="select--wd"  data-width="100%">
-                  <option>XS</option>
-                  <option>S</option>
-                  <option>M</option>
-                  <option>L</option>
-                  <option>XL</option>
+                  {% for size in sizes %}
+                    <option>{{size}}</option>
+                  {% endfor %}
+
                 </select>
               </div>
               <div class="col-xs-6">
                 <label>Color:</label>
+
                 <select class="selectpicker product-color" data-style="select--wd"  data-width="100%">
-                  <option>White</option>
-                  <option>Blue</option>
-                  <option>Grey</option>
+                  {% for color in colours%}
+                      <option>{{color}}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -243,19 +243,9 @@
               <div class="pull-left">
                 <button type = "submit" class="btn btn--wd text-uppercase" id="add-cart">Add to Cart</button>
               </div>
-              <div class="social-links social-links--colorize social-links--invert social-links--padding pull-right">
-                <ul>
-                  <li class="social-links__item"><a class="icon icon-facebook tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on facebook"></a></li>
-                  <li class="social-links__item"><a class="icon icon-twitter tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on twitter"></a></li>
-                  <li class="social-links__item"><a class="icon icon-google tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on google"></a></li>
-                  <li class="social-links__item"><a class="icon icon-pinterest tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on pinterest"></a></li>
-                </ul>
-              </div>
+
             </div>
             <div class="divider divider--xs"></div>
-            <ul class="product-links product-links--inline">
-              <li><a href="#"><span class="icon icon-mail-fill"></span>Email to friend</a></li>
-            </ul>
           </div>
 
           <!-- <div class="col-sm-12 col-md-4 col-lg-3">
