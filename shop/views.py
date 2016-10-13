@@ -33,7 +33,7 @@ def buy(request):
 	# if user is not None:
 	# print request.session['uniqueID']
 	if request.POST:
-		request.session['uniqueID'] = str(time.time)
+		request.session['uniqueID'] = str(time.time())
 		uid = request.session['uniqueID']
 		print(request.session['uniqueID'])
 		itemID = request.POST['itemID']
@@ -71,7 +71,7 @@ def buy(request):
 				'color': color,
 				'name': name
 			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
+			resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 		else:
 			cache.set(key, {
 				'itemID': itemID,
@@ -96,8 +96,7 @@ def buy(request):
 			'color': color,
 			'name': name
 		}
-		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
-
+		resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 	return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
