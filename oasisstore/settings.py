@@ -77,10 +77,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+# 'redis_cache.RedisCache',
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.RedisCache', #django_redis.cache.RedisCache
+        'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379/1',
     },
 }
