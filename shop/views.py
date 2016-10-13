@@ -109,6 +109,7 @@ def getcart(request):
 
 	return JsonResponse({'items': resp, 'cartid': uid})
 
+@csrf_exempt
 @login_required
 def checkoutcart(request):
 	# user = request.user
