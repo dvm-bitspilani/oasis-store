@@ -53,13 +53,13 @@
 </div>
 <!-- Modal Search -->
 <div class="overlay overlay-scale">
-  <button type="button" class="overlay-close"> ✕ </button>
+
   <div class="overlay__content">
-    <form id="search-form" class="search-form outer" action="#" method="post">
+    <button type="button" class="overlay-close"> ✕ </button><form id="search-form" class="search-form outer" >
       <div class="input-group input-group--wd">
-        <input type="text" class=" input--full" placeholder="search text here ...">
+        <input type="text" class=" input--full email" placeholder="Enter Your Email">
         <span class="input-group__bar"></span> </div>
-      <button class="btn btn--wd text-uppercase wave waves-effect">Search</button>
+      <button class="btn btn--wd text-uppercase wave waves-effect waves-effect">PROCEED</button>
     </form>
   </div>
 </div>
@@ -133,14 +133,14 @@
                     </div>
                       <div class="shopping-cart__item__info__price">0</div>
                       <div class="shopping-cart__item__info__qty">Qty:<span>0</span></div>
-                      <div class="shopping-cart__item__info__delete"><a href="#" class="icon icon-clear delete_item" onclick="delete_item(this)"></a></div>
+                      <div class="shopping-cart__item__info__delete" ><a href="#" class="icon icon-clear delete_item" onclick="delete_item(this)"></a></div>
                     </div>
                   </li>
                 </ul>
                 <div class="shopping-cart__bottom">
                   <div class="pull-left">Subtotal: <span class="shopping-cart__total"> {{totalprice}}</span></div>
                   <div class="pull-right">
-                    <button type="submit" class="btn btn--wd text-uppercase">Checkout</button>
+                    <button type="submit" class="btn btn--wd text-uppercase checkout">Checkout</button>
                   </div>
                 </div>
               </div>
@@ -195,7 +195,7 @@
           </div>
           <div class="product-info col-sm-8 col-md-4 col-lg-4">
             <div class="product-info__title">
-              <h2 class="product-name">{{name}}</h2>
+              <h2 class="product-name" data-id="{{id}}">{{name}}</h2>
               <div class="rating product-info__rating visible-xs"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
             </div>
             <div class="product-info__sku pull-right"><span class="label label-success product-avail">IN STOCK</span></div>
@@ -213,21 +213,22 @@
             <div class="divider divider--xs product-info__divider"></div>
             <div class="row">
               <div class="col-xs-6">
+
                 <label>Size:</label>
                 <select class="selectpicker product-size"  data-style="select--wd"  data-width="100%">
-                  <option>XS</option>
-                  <option>S</option>
-                  <option>M</option>
-                  <option>L</option>
-                  <option>XL</option>
+                  {% for size in sizes %}
+                    <option>{{size}}</option>
+                  {% endfor %}
+
                 </select>
               </div>
               <div class="col-xs-6">
                 <label>Color:</label>
+
                 <select class="selectpicker product-color" data-style="select--wd"  data-width="100%">
-                  <option>White</option>
-                  <option>Blue</option>
-                  <option>Grey</option>
+                  {% for color in colours%}
+                      <option>{{color}}</option>
+                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -243,19 +244,9 @@
               <div class="pull-left">
                 <button type = "submit" class="btn btn--wd text-uppercase" id="add-cart">Add to Cart</button>
               </div>
-              <div class="social-links social-links--colorize social-links--invert social-links--padding pull-right">
-                <ul>
-                  <li class="social-links__item"><a class="icon icon-facebook tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on facebook"></a></li>
-                  <li class="social-links__item"><a class="icon icon-twitter tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on twitter"></a></li>
-                  <li class="social-links__item"><a class="icon icon-google tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on google"></a></li>
-                  <li class="social-links__item"><a class="icon icon-pinterest tooltip-link" href="#" data-placement="top" data-toggle="tooltip" data-original-title="Share on pinterest"></a></li>
-                </ul>
-              </div>
+
             </div>
             <div class="divider divider--xs"></div>
-            <ul class="product-links product-links--inline">
-              <li><a href="#"><span class="icon icon-mail-fill"></span>Email to friend</a></li>
-            </ul>
           </div>
 
           <!-- <div class="col-sm-12 col-md-4 col-lg-3">
@@ -476,6 +467,7 @@
 <!-- Custom -->
 <script src="{% static 'shop/js/custom.js' %}"></script>
 <script src="{% static 'shop/js/script.js' %}"></script>
+
 </body>
 
 <!-- Mirrored from xena.tonytemplates.com/themeforest/welldone/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Oct 2016 18:08:54 GMT -->

@@ -44,9 +44,11 @@ def buy(request):
 		color = request.POST['color']
 		price = item.price
 		name = item.name
-		# color = item.colour		
+		# color = item.colour
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 		key = (str(uid) + ',' + str(itemID) + ',' + str(size) + str(color))
+		print(uid,key)
+
 		if cache.has_key(key):
 			tmpcache = cache.get(key)
 			tmpcachequant = int(tmpcache['quantity']) + int(quantity)
@@ -98,21 +100,26 @@ def buy(request):
 			'name': name
 		}
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
-	
 	return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
 
-@login_required
 def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
-	keys = str(uid) + "_*"
+	keys = str(uid) + "*"
+	print(cache.keys(keys))
+# <<<<<<< HEAD
+# 	cart = cache.get(str(keys))
+# 	resp = []
+# 	totalprice = 0
+# 	print(cart)
+# 	for item in cart:
+# 		tmpitem = cache.get(item)
+# =======
 	# cart = cache.get(keys)
 	resp = []
 	totalprice = 0
-	# for item in cart:
-	# while next(cache.iter_keys(keys)) != null:
 	try:
 		while next(cache.iter_keys(keys)) != None:
 			tmpitem = cache.get(next(cache.iter_keys(keys)))
@@ -128,7 +135,6 @@ def getcart(request):
 	return JsonResponse({'items': resp, 'cartid': uid})
 
 @csrf_exempt
-@login_required
 def checkoutcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
@@ -198,13 +204,10 @@ def getitem(request, itemid):
 	pic_f = str(item.pic_front.url)[4:]
 	pic_b = str(item.pic_back.url)[4:]
 	desc = item.description
-	colours = ''
-	for color in item.colour.all():
-		colours += str(color)
-	# colours = [x for x in item.colour]
+
 	# send the user current cart as well..lets say he refreshes the page
-	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
-	return JsonResponse(context) #render(request, 'shop/product.html', context)
+	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all()}
+	return render(request, 'shop/product.html', context)
 
 def getall(request):
 	items = Item.objects.all()
@@ -216,6 +219,7 @@ def getall(request):
 
 	return JsonResponse(response)
 
+@csrf_exempt
 def removeItem(request):
 	cartuid = request.POST['cartid']
 	cache.delete(cartuid)

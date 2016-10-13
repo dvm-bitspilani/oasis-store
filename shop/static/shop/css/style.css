@@ -7198,8 +7198,10 @@ body.fullwidth .footer .container > .navbar-collapse {
   }
 }
 .outer {
-  width: 100%;
+  width: 80%;
   display: inline-block;
+  top: 30%;
+  position: relative;
 }
 .page-content {
   position: relative;
@@ -10658,9 +10660,11 @@ body.modal-open {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   text-align: center;
+  height: 50%;
+  background: white;
 }
 .overlay-scale {
   visibility: hidden;
