@@ -19,7 +19,7 @@ from allauth.socialaccount.models import *
 from django.core.urlresolvers import reverse
 from .models import *
 from django.core.cache import cache
-
+import time
 
 @csrf_exempt
 def index(request):
@@ -41,7 +41,7 @@ def buy(request):
 			name = item.name
 
 			# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
-			key = str(itemID)
+			key = (str(itemID) + ',' + str(time.time))
 			if cache.has_key(key):
 				tmpcache = cache.get(key)
 				tmpcachequant = int(tmpcache['quantity']) + int(quantity)
@@ -177,3 +177,13 @@ def getitem(request, itemid):
 	# send the user current cart as well..lets say he refreshes the page
 	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
 	return render(request, 'shop/product.html', context)
+
+def getall(request):
+	items = Item.objects.all()
+	resp = []
+	for item in items:
+		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description })
+
+	response = {'items': resp}
+
+	return JsonResponse(response)
