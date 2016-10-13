@@ -76,16 +76,16 @@ $('#add-cart').click(function(){
 });
 
 $('.delete_item').click(function(){
+  item_id=$('.product-name').attr('data-id');
   var data={
-    cartid:cart_id,
-    item:'',
+    cartid:cart_id+item_id,
   }
   $.ajax({
     type:'POST',
     url:'../../removecart',
     data:data,
     success:function(response){
-
+        alert(response.message);
     }
   })
 })
