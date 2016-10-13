@@ -121,12 +121,15 @@ def getcart(request):
 	resp = []
 	totalprice = 0
 	try:
-		while next(cache.iter_keys(keys)) != None:
-			tmpitem = cache.get(next(cache.iter_keys(keys)))
+		# while next(cache.iter_keys(keys)) != None:
+		key = 0
+		for key in cache.keys(keys):
+			tmpitem = cache.get(key)
 			t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
 			getitem = Item.objects.get(pk = tmpitem['itemID'])
 			itemimg = getitem.pic_front
 			totalprice+=t_price
+			key+=1
 
 			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(getitem.pic_front.url)[4:]})
 	except next(cache.iter_keys(keys) == None):
