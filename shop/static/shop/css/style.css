@@ -10070,6 +10070,7 @@ form label.error {
 }
 .product-carousel {
   margin-bottom: -20px;
+  margin-top: 30px;
 }
 .product-carousel .slick-prev,
 .product-carousel .slick-next {

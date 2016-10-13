@@ -1,3 +1,12 @@
+window.onload = function(){
+  jQuery(function($){
+    // get cart from cache
+    $.ajax({
+
+    })
+  });
+}
+
 jQuery(function($){
   var loc=location.href;
 
