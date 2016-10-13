@@ -39,7 +39,7 @@ def buy(request):
 			size = request.POST['size']
 			price = item.price
 			name = item.name
-
+			color = item.colour		
 			# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 			key = (str(itemID) + ',' + str(time.time))
 			if cache.has_key(key):

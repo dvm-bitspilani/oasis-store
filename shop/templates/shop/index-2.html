@@ -309,30 +309,30 @@
             <!-- SLIDE  -->
             <li data-transition="fade" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off"  data-title="Slide">
               <!-- MAIN IMAGE -->
-              <img src="{% static 'shop/images/slides/slide-1.jpg' %}"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
+              <img src="{% static 'shop/images/ecommerce-background.jpg' %}"  alt="slide1"  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat">
               <!-- LAYERS -->
 
               <!-- LAYER NR. 1 -->
               <div class="tp-caption tp-caption--wd-1  lfb ltt"
-			data-x="center"
+			data-x="950"
 			data-y="center"
             data-voffset="-100"
 			data-speed="600"
 			data-start="800"
 			data-easing="Power4.easeOut"
 			data-endeasing="Power4.easeIn"
-			style="z-index: 1;">Fashion</div>
+			style="z-index: 1;">THIS OASIS</div>
 
               <!-- LAYER NR. 2 -->
               <div class="tp-caption tp-caption--wd-2 lfb ltt"
-			data-x="center"
+			data-x="950"
 			data-y="center"
             data-voffset="0"
 			data-speed="600"
 			data-start="900"
 			data-easing="Power4.easeOut"
 			data-endeasing="Power4.easeIn"
-			style="z-index: 2;">Special Occasion</div>
+			style="z-index: 2;">Buy Your <br>Favorti</div>
 
               <!-- LAYER NR. 3 -->
               <div class="tp-caption tp-caption--wd-3 lfb ltt"
@@ -537,46 +537,7 @@
 
     <!-- End Slider section -->
     <!-- Content section -->
-    <section class="content">
-      <div class="container">
-        <div class="row hide-outer-animation">
-          <div class="col-md-7 col-lg-8">
-            <div class="text-center">
-              <div class="banner banner--image hover-squared animation" data-animation="fadeInLeft" data-animation-delay="0s" onclick="location.href='#';"> <img src="{% static 'shop/images/banner-01-new.jpg' %}" alt="" class="img-responsive" />
-                <div class="banner--image__text banner--image__text--left banner--image__text--light text-center">
-                  <h5>Get Contemporary</h5>
-                  <h3 id="responsive_headline"><strong>The High Halter</strong></h3>
-                  <h6>Frame your face and shoulders
-                    with the silhouette of season<br>
-                    <strong>Up to 65% OFF</strong></h6>
-                </div>
-                <div class="product-category__hover caption"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5 col-lg-4">
-            <div class="banner banner--icon hover-squared animation" data-animation="fadeInRight" data-animation-delay="0s" onclick="location.href='#';">
-              <div class="banner--icon__icon"> <span class="icon icon-sales"></span> </div>
-              <div class="banner--icon__text text-center">
-                <h4 class="text-uppercase">TOTAL SALE</h4>
-                <div class="banner--icon__text__divider"></div>
-                <div class="text-uppercase">UP TO 70% OFF YOUR FAVOURITE BRANDS</div>
-              </div>
-              <div class="product-category__hover caption"></div>
-            </div>
-            <div class="banner banner--icon banner--last banner--light hover-squared animation" data-animation="fadeInRight" data-animation-delay="0s" onclick="location.href='#';">
-              <div class="banner--icon__icon"> <span class="icon icon-box"></span> </div>
-              <div class="banner--icon__text text-center">
-                <h4 class="text-uppercase">Gift CERTIFICATES</h4>
-                <div class="banner--icon__text__divider"></div>
-                <div class="text-uppercase">Gift certificates are the simplest, speediest way to send something special! </div>
-              </div>
-              <div class="product-category__hover caption"></div>
-            </div>
-		</div>
-        </div>
-      </div>
-    </section>
+
     <section class="content">
       <div class="container">
 
@@ -591,182 +552,47 @@
         <!-- /.modal -->
 
         <h2 class="text-center text-uppercase">Featured Products</h2>
-        <div class="row product-carousel mobile-special-arrows animated-arrows product-grid four-in-row">
+        <div class="row product-carousel product-list-1 mobile-special-arrows animated-arrows product-grid four-in-row">
+
+
           <div class="product-preview-wrapper">
             <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-1.jpg' %}" alt=""/></a></div>
-              <div class="product-preview__label product-preview__label--left product-preview__label--new"><span>new</span></div>
-              <div class="product-preview__label product-preview__label--right product-preview__label--sale"><span>sale<br>
-                -10%</span></div>
+              <div class="product-preview__image"><a class="product-link" href="./product/1"><img class="product-img" src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-8.jpg' %}"  alt=""/></a></div>
               <div class="product-preview__info text-center">
                 <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
                 <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
+                  <h2><a href="#" class="product-name">Fast Seconds Knit White</a></h2>
                 </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <ul class="options-swatch options-swatch--color">
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/blue.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/yellow.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/green.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/dark-grey.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/grey.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/red.png' %}" width="10" height="10" alt=""/></span></a></li>
-                  <li><a href="#"><span class="swatch-label"><img src="{% static 'shop/images/colors/white.png' %}" width="10" height="10" alt=""/></span></a></li>
-                </ul>
-                <div class="price-box "><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
-                <div class="product-preview__info__description">
+                <div class="price-box product-price">$65.00</div>
+                <div class="product-preview__info__description product-description">
                   <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
                   <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
                 </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-2.jpg' %}"  alt=""/></a></div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <ul class="options-swatch options-swatch--color">
-                  <li class="color-blue"></li>
-                  <li class="color-yellow"></li>
-                  <li class="color-green"></li>
-                  <li class="color-dark-grey"></li>
-                  <li class="color-grey"></li>
-                  <li class="color-red"></li>
-                  <li class="color-white"></li>
-                </ul>
-                <div class="price-box"><span class="price-box__new">$65.00</span> <span class="price-box__old">$84.00</span></div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-3.jpg' %}"  alt=""/></a></div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view-2.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Other Quick VIEW</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-4.jpg' %}"  alt=""/></a>
-                <div class="countdown_box">
-                  <div class="countdown_inner">
-                    <div class="title">special price valid:</div>
-                    <div id="countdown1"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-5.jpg' %}"  alt=""/></a>
-                <div class="product-preview__outstock">OUT STOCK</div>
-              </div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-6.jpg' %}"  alt=""/></a></div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-7.jpg' %}"  alt=""/></a></div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
-              </div>
-            </div>
-          </div>
-          <div class="product-preview-wrapper">
-            <div class="product-preview">
-              <div class="product-preview__image"><a href="./product/1"><img src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-8.jpg' %}"  alt=""/></a></div>
-              <div class="product-preview__info text-center">
-                <div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
-                <div class="product-preview__info__title">
-                  <h2><a href="#">Fast Seconds Knit White</a></h2>
-                </div>
-                <div class="rating"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span></div>
-                <div class="price-box">$65.00</div>
-                <div class="product-preview__info__description">
-                  <p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
-                  <p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
-                </div>
-                <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div>
+                <!-- <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div> -->
               </div>
             </div>
           </div>
         </div>
+        <div class="row product-carousel product-list-2 mobile-special-arrows animated-arrows product-grid four-in-row">
+					<div class="product-preview-wrapper">
+						<div class="product-preview">
+							<div class="product-preview__image"><a class="product-link" href="./product/1"><img class="product-img" src="{% static 'shop/images/products/product-empty.png' %}" data-lazy="{% static 'shop/images/products/product-8.jpg' %}"  alt=""/></a></div>
+							<div class="product-preview__info text-center">
+								<div class="product-preview__info__btns"><a href="#" class="btn btn--round ajax-to-cart"><span class="icon-ecommerce"></span></a> <a href="quick-view.html" class="btn btn--round btn--dark btn-quickview" data-toggle="modal" data-target="#quickView"><span class="icon icon-eye"></span></a></div>
+								<div class="product-preview__info__title">
+									<h2><a href="#" class="product-name">Fast Seconds Knit White</a></h2>
+								</div>
+								<div class="price-box product-price">$65.00</div>
+								<div class="product-preview__info__description product-description">
+									<p>Nulla at mauris leo. Donec quis ex elementum, tincidunt elit quis, cursus tortor. Sed sollicitudin enim metus, ut hendrerit orci dignissim venenatis.</p>
+									<p>Suspendisse consectetur odio diam, ut consequat quam aliquet at.</p>
+								</div>
+								<!-- <div class="product-preview__info__link"><a href="#" class="compare-link"><span class="icon icon-bars"></span><span class="product-preview__info__link__text">Add to compare</span></a> <a href="#" class="ajax-to-wishlist"><span class="icon icon-favorite"></span><span class="product-preview__info__link__text">Add to wishlist</span></a><a href="#" class="btn btn--wd buy-link"><span class="icon icon-ecommerce"></span><span class="product-preview__info__link__text">Add to cart</span></a></div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+  </div>
       </div>
     </section>
     <section class="content content--fill">
@@ -774,87 +600,6 @@
         <h2 class="text-center text-uppercase">products categories</h2>
         <div class="product-category-carousel mobile-special-arrows animated-arrows slick">
           <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-01.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-02.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-03.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-04.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-05.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-01.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-02.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-03.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-04.jpg' %}" alt="#"></a>
-            <div class="product-category__hover caption"></div>
-            <div class="product-category__info">
-              <div class="product-category__info__ribbon">
-                <h5 class="product-category__info__ribbon__title">men SUITS</h5>
-                <div class="product-category__info__ribbon__count">32 products</div>
-              </div>
-            </div>
-          </div>
-          <div class="product-category hover-squared"> <a href="#"><img src="{% static 'shop/images/category-empty.png' %}" data-lazy="{% static 'shop/images/category-img-05.jpg' %}" alt="#"></a>
             <div class="product-category__hover caption"></div>
             <div class="product-category__info">
               <div class="product-category__info__ribbon">
