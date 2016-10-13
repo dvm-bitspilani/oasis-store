@@ -47,6 +47,8 @@ def buy(request):
 		# color = item.colour
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 		key = (str(uid) + ',' + str(itemID) + ',' + str(size) + str(color))
+		print(uid,key)
+
 		if cache.has_key(key):
 			tmpcache = cache.get(key)
 			tmpcachequant = int(tmpcache['quantity']) + int(quantity)
@@ -107,6 +109,7 @@ def getcart(request):
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
 	cart = cache.get(keys)
+	print(uid,keys,cart)
 	resp = []
 	totalprice = 0
 	print(cart)
