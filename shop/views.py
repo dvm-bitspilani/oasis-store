@@ -180,7 +180,7 @@ def getitem(request, itemid):
 	desc = item.description
 
 	# send the user current cart as well..lets say he refreshes the page
-	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all()}
+	context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all()}
 	return render(request, 'shop/product.html', context)
 
 def getall(request):
@@ -193,6 +193,7 @@ def getall(request):
 
 	return JsonResponse(response)
 
+@csrf_exempt
 def removeItem(request):
 	cartuid = request.POST['cartid']
 	cache.delete(cartuid)
