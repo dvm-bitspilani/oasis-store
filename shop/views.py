@@ -83,10 +83,10 @@ def buy(request):
 				'name': name
 				},
 				timeout = None)
-			if len(request.session['uniqueID']) == 0:
-				request.session['uniqueID'] = [key]
-			else:
-				request.session.append(key)
+			# if len(request.session['uniqueID']) == 0:
+			# 	request.session['uniqueID'] = [key]
+			# else:
+			# 	request.session['uniqueID'].append(key)
 		# sending data back incase someone does any mischief in price in frontend
 		data = {
 			'itemID': itemID,
