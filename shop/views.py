@@ -108,6 +108,7 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
+	print(cache.keys(keys))
 # <<<<<<< HEAD
 # 	cart = cache.get(str(keys))
 # 	resp = []
@@ -119,19 +120,15 @@ def getcart(request):
 	# cart = cache.get(keys)
 	resp = []
 	totalprice = 0
-	# for item in cart:
-	print cache.keys(keys)
-	print next(cache.iter_keys(keys))
-	# print(uid,keys,cache.items())
-
-	while next(cache.iter_keys(keys)) != None:
+	try:
 		tmpitem = cache.get(next(cache.iter_keys(keys)))
-# >>>>>>> a19e955d418fbf473e541fe5c5022753661518c4
 		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
 		totalprice+=t_price
 
 		resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color']})
-	print({'items': resp, 'cartid': uid})
+	except next(cache.iter_keys(keys) == None):
+		pass
+
 	return JsonResponse({'items': resp, 'cartid': uid})
 
 @csrf_exempt

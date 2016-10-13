@@ -6,9 +6,11 @@ window.onload = function(){
       type:'GET',
       url:'../../getcart/',
       success:function(response){
-        data=response['items'];
+        dataArr=response['items'];
         cart_id=response['cart_id'];
-        console.log(data);
+        console.log(dataArr);
+        dataArr.map(function(data){
+
         var newItem = $('.default__item').clone();
         newItem.show();
         newItem.removeClass('default__item');
@@ -20,6 +22,7 @@ window.onload = function(){
         newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
 
         $('#cart-list').append(newItem);
+      });
         // console.log('hi');
         updateCart();
 
