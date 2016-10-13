@@ -97,7 +97,7 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
-	cart = cache.keys(keys)
+	cart = cache.get(keys)
 	resp = []
 	totalprice = 0
 	for item in cart:
@@ -115,7 +115,7 @@ def checkoutcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
-	cart = cache.keys(keys)
+	cart = cache.get(keys)
 	resp = []
 	tt_price = 0
 	num = 1
