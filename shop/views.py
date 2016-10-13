@@ -73,8 +73,8 @@ def buy(request):
 				'name': name
 				},
 				timeout = None)
-			if len(request.session['item']) == 0:
-				request.session['item'] = [key]
+			if len(request.session['uniqueID']) == 0:
+				request.session['uniqueID'] = [key]
 			else:
 				request.session.append(key)
 		# sending data back incase someone does any mischief in price in frontend
@@ -177,10 +177,13 @@ def getitem(request, itemid):
 	pic_f = str(item.pic_front.url)[4:]
 	pic_b = str(item.pic_back.url)[4:]
 	desc = item.description
-	colours = item.colour
+	colours = ''
+	for color in item.colour.all():
+		colours += str(color)
+	# colours = [x for x in item.colour]
 	# send the user current cart as well..lets say he refreshes the page
 	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
-	return render(request, 'shop/product.html', context)
+	return JsonResponse(context) #render(request, 'shop/product.html', context)
 
 def getall(request):
 	items = Item.objects.all()
