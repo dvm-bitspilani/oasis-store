@@ -33,10 +33,14 @@ def buy(request):
 	# if user is not None:
 	# print request.session['uniqueID']
 	if request.POST:
-		request.session['uniqueID'] = str(time.time())
-		request.session.modified = True
-		uid = request.session['uniqueID']
-		print(request.session['uniqueID'])
+		if request.session['uniqueID'] == None:
+			request.session['uniqueID'] = str(time.time())
+			request.session.modified = True
+			uid = request.session['uniqueID']
+			print(request.session['uniqueID'])
+		else: 
+			pass
+			
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
 		quantity = request.POST['quantity']
@@ -108,7 +112,7 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
-	print(cache.keys(keys))
+	print cache.keys(keys)
 # <<<<<<< HEAD
 # 	cart = cache.get(str(keys))
 # 	resp = []
@@ -118,23 +122,25 @@ def getcart(request):
 # 		tmpitem = cache.get(item)
 # =======
 	# cart = cache.get(keys)
+	keyss = cache.keys(keys)
 	resp = []
 	totalprice = 0
-	keyss = cache.keys(keys)
-	try:
-		# while next(cache.iter_keys(keys)) != None:
-		key = 0
-		for key in cache.keys(keys):
-			tmpitem = cache.get(key)
-			t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
-			getitem = Item.objects.get(pk = tmpitem['itemID'])
-			itemimg = getitem.pic_front
-			totalprice+=t_price
-			key+=1
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(getitem.pic_front.url)[4:]})
-	except next(cache.iter_keys(keys) == None):
-		pass
+	# try:
+		# while next(cache.iter_keys(keys)) != None:
+	x = 0
+	for x in range(0,len(keyss)):
+		tmpitem = cache.get(keyss[x])
+		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
+		getitem = Item.objects.get(pk = tmpitem['itemID'])
+		itemimg = getitem.pic_front.url
+		print itemimg
+		totalprice+=t_price
+		x+=1
+
+		resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(getitem.pic_front.url)[4:]})
+	# except next(cache.iter_keys(keys) == None):
+	# 	pass
 
 	return JsonResponse({'items': resp, 'cartid': uid})
 
