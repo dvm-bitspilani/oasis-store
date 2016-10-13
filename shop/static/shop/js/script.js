@@ -86,7 +86,6 @@ $('.icon-clear').click(function(){
 function delete_item(ele){
   console.log(ele);
   jQuery(function($){
-    $(ele).closest('.shopping-cart__item').remove();
   item_id=$('.product-name').attr('data-id');
   var data={
     cartid:cart_id+item_id,
@@ -97,10 +96,11 @@ function delete_item(ele){
     data:data,
     success:function(response){
         alert(response.message);
+        $(ele).closest('.shopping-cart__item').remove();
+        updateCart();
     }
   });
 });
-  updateCart();
 }
 
 function updateCart(){

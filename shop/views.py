@@ -97,7 +97,7 @@ def buy(request):
 			'name': name
 		}
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
-	
+
 	return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
@@ -109,6 +109,7 @@ def getcart(request):
 	cart = cache.get(keys)
 	resp = []
 	totalprice = 0
+	print(cart)
 	for item in cart:
 		tmpitem = cache.get(item)
 		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
