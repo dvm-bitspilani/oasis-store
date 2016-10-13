@@ -42,7 +42,7 @@ def buy(request):
 		size = request.POST['size']
 		price = item.price
 		name = item.name
-		color = item.colour
+		# color = item.colour		
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 		key = (str(itemID) + ',' + str(uid))
 		if cache.has_key(key):
@@ -53,7 +53,7 @@ def buy(request):
 				'price': price,
 				'quantity': tmpcachequant,
 				'size': size,
-				'color': color,
+				# 'color': color,
 				'name': name,
 				'executionType': 'buy'
 				},
@@ -69,7 +69,7 @@ def buy(request):
 				'quantity': quantity,
 				'executionType': 'buy',
 				'size': size,
-				'color': color,
+				# 'color': color,
 				'name': name
 				},
 				timeout = None)
@@ -83,7 +83,7 @@ def buy(request):
 			'price': price,
 			'quantity': quantity,
 			'size': size,
-			'color': color,
+			# 'color': color,
 			'name': name
 		}
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
