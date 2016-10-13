@@ -42,7 +42,7 @@ def buy(request):
 		size = request.POST['size']
 		price = item.price
 		name = item.name
-		color = item.colour		
+		color = item.colour
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
 		key = (str(itemID) + ',' + str(uid))
 		if cache.has_key(key):
@@ -174,11 +174,10 @@ def getitem(request, itemid):
 	item = Item.objects.get(pk = itemid)
 	name = item.name
 	price = item.price
-	pic_f = item.pic_front
-	pic_b = item.pic_back
+	pic_f = str(item.pic_front.url)[4:]
+	pic_b = str(item.pic_back.url)[4:]
 	desc = item.description
 	colours = item.colour
-
 	# send the user current cart as well..lets say he refreshes the page
 	context = {'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': colours}
 	return render(request, 'shop/product.html', context)
@@ -187,7 +186,7 @@ def getall(request):
 	items = Item.objects.all()
 	resp = []
 	for item in items:
-		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description, 'img': item.pic_front.url})
+		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description, 'img': str(item.pic_front.url)[4:]})
 
 	response = {'items': resp}
 
