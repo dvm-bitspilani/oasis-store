@@ -187,7 +187,7 @@ def getall(request):
 	items = Item.objects.all()
 	resp = []
 	for item in items:
-		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description, 'img': item.pic_front})
+		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description, 'img': item.pic_front.url})
 
 	response = {'items': resp}
 
