@@ -31,11 +31,11 @@ def buy(request):
 	# user = request.user
 	# userp = UserProfile.objects.get(user = request.user)
 	# if user is not None:
-	print request.session['uniqueID']
+	# print request.session['uniqueID']
 	if request.POST:
 		request.session['uniqueID'] = str(time.time)
 		uid = request.session['uniqueID']
-		print(request.POST)
+		print(request.session['uniqueID'])
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
 		quantity = request.POST['quantity']
