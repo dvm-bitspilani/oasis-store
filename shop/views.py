@@ -63,6 +63,15 @@ def buy(request):
 				# 	request.session['item'] = [key]
 				# else:
 				# 	request.session.append(key)
+			data = {
+				'itemID': itemID,
+				'price': price,
+				'quantity': quantity,
+				'size': size,
+				'color': color,
+				'name': name
+			}
+			resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
 		else:
 			cache.set(key, {
 				'itemID': itemID,
@@ -88,7 +97,8 @@ def buy(request):
 			'name': name
 		}
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
-		return JsonResponse(resp)
+	
+	return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
 
@@ -199,3 +209,48 @@ def removeItem(request):
 	cache.delete(cartuid)
 
 	return JsonResponse({'message': 'The following item has been removed from the cart'})
+
+################################Instamojo Payment Portal###########################################
+
+def final_pay_reg(request):
+	if request.method == 'POST':
+
+		email = request.POST['email']
+
+		email = ( str(email) )
+
+		b = 'https://www.instamojo.com/bitsoasis16/bits-merchandise/'+'?intent=buy&data_Field_65327='+email+'&data_readonly=data_Field_65327'
+
+		return HttpResponseRedirect(b)
+
+	return render('middlepage.html', context={'email_id':request.GET['email']})
+
+def apirequest_reg(request):
+	import requests
+	payid=str(request.GET['payment_id'])
+	headers = {'X-Api-Key': '9efcf3131144007821bcbc905dabebc7',
+    	       'X-Auth-Token': '03c40f518819e3e9d84d31156fee5681'}
+	r = requests.get('https://www.instamojo.com/api/1.1/payments/',
+                	 headers=headers)
+	json_ob = r.json()
+	payments = json_ob['payments'][0]
+	amount = payments['amount']
+	try:
+		email = payments['custom_fields']['Field_65327']['value']
+		user=Participant.objects.filter(email_id = email)[0]
+		if int(float(amount)) == 300:
+			user.reg_paid=True
+		user.save()
+	except:
+		ids = payments['custom_fields']['Field_65327']['value'].split('.')
+		no_paid = int(float(amount))/300
+		for i in ids[:no_paid]:
+			user = Participant.objects.get(id = int(i))
+			user.reg_paid=True
+			user.save()
+
+	context = {
+		'status' : 1,
+		'message' : 'Payment Successful.'
+	}
+	return render(request, 'register.html', context)
