@@ -31,67 +31,71 @@ def buy(request):
 	# user = request.user
 	# userp = UserProfile.objects.get(user = request.user)
 	# if user is not None:
-		if request.POST:
-			print(request.POST)
-			itemID = request.POST['itemID']
-			item = Item.objects.get(pk = itemID)
-			quantity = request.POST['quantity']
-			size = request.POST['size']
-			price = item.price
-			name = item.name
-			color = item.colour		
-			# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
-			key = (str(itemID) + ',' + str(time.time))
-			if cache.has_key(key):
-				tmpcache = cache.get(key)
-				tmpcachequant = int(tmpcache['quantity']) + int(quantity)
-				cache.set(key, {
-					'itemID': itemID,
-					'price': price,
-					'quantity': tmpcachequant,
-					'size': size,
-					'color': color,
-					'name': name,
-					'executionType': 'buy'
-					},
-					timeout = None)
-					# if len(request.session['item']) == 0:
-					# 	request.session['item'] = [key]
-					# else:
-					# 	request.session.append(key)
-			else:
-				cache.set(key, {
-					'itemID': itemID,
-					'price': price,
-					'quantity': quantity,
-					'executionType': 'buy',
-					'size': size,
-					'color': color,
-					'name': name
-					},
-					timeout = None)
-				if len(request.session['item']) == 0:
-					request.session['item'] = [key]
-				else:
-					request.session.append(key)
-			# sending data back incase someone does any mischief in price in frontend
-			data = {
+	print request.session['uniqueID']
+	if request.POST:
+		request.session['uniqueID'] = str(time.time)
+		uid = request.session['uniqueID']
+		print(request.POST)
+		itemID = request.POST['itemID']
+		item = Item.objects.get(pk = itemID)
+		quantity = request.POST['quantity']
+		size = request.POST['size']
+		price = item.price
+		name = item.name
+		color = item.colour		
+		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
+		key = (str(itemID) + ',' + str(uid))
+		if cache.has_key(key):
+			tmpcache = cache.get(key)
+			tmpcachequant = int(tmpcache['quantity']) + int(quantity)
+			cache.set(key, {
+				'itemID': itemID,
+				'price': price,
+				'quantity': tmpcachequant,
+				'size': size,
+				'color': color,
+				'name': name,
+				'executionType': 'buy'
+				},
+				timeout = None)
+				# if len(request.session['item']) == 0:
+				# 	request.session['item'] = [key]
+				# else:
+				# 	request.session.append(key)
+		else:
+			cache.set(key, {
 				'itemID': itemID,
 				'price': price,
 				'quantity': quantity,
+				'executionType': 'buy',
 				'size': size,
 				'color': color,
 				'name': name
-			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
-			return JsonResponse(resp)
+				},
+				timeout = None)
+			if len(request.session['item']) == 0:
+				request.session['item'] = [key]
+			else:
+				request.session.append(key)
+		# sending data back incase someone does any mischief in price in frontend
+		data = {
+			'itemID': itemID,
+			'price': price,
+			'quantity': quantity,
+			'size': size,
+			'color': color,
+			'name': name
+		}
+		resp = {'status': True, 'message': item.name + ' added succesfully to the cart','data':data}
+		return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
 
 @login_required
 def getcart(request):
-	user = request.user
-	keys = str(user.id) + "*"
+	# user = request.user
+	uid = request.session['uniqueID']
+	keys = str(uid) + "*"
 	cart = cache.keys(keys)
 	resp = []
 	totalprice = 0
@@ -106,8 +110,9 @@ def getcart(request):
 
 @login_required
 def checkoutcart(request):
-	user = request.user
-	keys = str(user.id) + "*"
+	# user = request.user
+	uid = request.session['uniqueID']
+	keys = str(uid) + "*"
 	cart = cache.keys(keys)
 	resp = []
 	tt_price = 0
@@ -135,7 +140,7 @@ def checkoutcart(request):
 		tcartbody = cartbody[y] + "\n"
 		y+=1
 
-	email = user.username
+	email = request.POST['email_id']
 	body = '''
 
 Thank you for placing the order.
@@ -182,7 +187,7 @@ def getall(request):
 	items = Item.objects.all()
 	resp = []
 	for item in items:
-		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description })
+		resp.append({'id': item.id, 'name': item.name, 'price': item.price, 'description': item.description, 'img': item.pic_front})
 
 	response = {'items': resp}
 
