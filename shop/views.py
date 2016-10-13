@@ -113,7 +113,7 @@ def getcart(request):
 	totalprice = 0
 	# for item in cart:
 	while next(cache.iter_keys(keys)) != null:
-		tmpitem = cache.get(item)
+		tmpitem = cache.get(next(cache.iter_keys(keys)))
 		t_price = int(tmpitem['price'])*int(tmpitem['quantity'])
 		totalprice+=t_price
 
