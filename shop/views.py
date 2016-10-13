@@ -34,6 +34,7 @@ def buy(request):
 	# print request.session['uniqueID']
 	if request.POST:
 		request.session['uniqueID'] = str(time.time())
+		request.session.modified = True
 		uid = request.session['uniqueID']
 		print(request.session['uniqueID'])
 		itemID = request.POST['itemID']
@@ -45,7 +46,7 @@ def buy(request):
 		name = item.name
 		# color = item.colour		
 		# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
-		key = (str(uid) + ',' + str(itemID))
+		key = (str(uid) + ',' + str(itemID) + ',' + str(size) + str(color))
 		if cache.has_key(key):
 			tmpcache = cache.get(key)
 			tmpcachequant = int(tmpcache['quantity']) + int(quantity)
