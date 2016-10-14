@@ -96,15 +96,15 @@ def buy(request):
 				# else:
 				# 	request.session['uniqueID'].append(key)
 			# sending data back incase someone does any mischief in price in frontend
-			data = {
-				'itemID': itemID,
-				'price': price,
-				'quantity': quantity,
-				'size': size,
-				'color': color,
-				'name': name
-			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
+				data = {
+					'itemID': itemID,
+					'price': price,
+					'quantity': quantity,
+					'size': size,
+					'color': color,
+					'name': name
+				}
+				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 
 		else: 
 			quantity = request.POST['quantity']
@@ -151,13 +151,13 @@ def buy(request):
 				# else:
 				# 	request.session['uniqueID'].append(key)
 			# sending data back incase someone does any mischief in price in frontend
-			data = {
-				'itemID': itemID,
-				'price': price,
-				'quantity': quantity,
-				'name': name
-			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}			
+				data = {
+					'itemID': itemID,
+					'price': price,
+					'quantity': quantity,
+					'name': name
+				}
+				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}			
 
 	return JsonResponse(resp)
 	# else:
