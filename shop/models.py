@@ -9,9 +9,10 @@ class Item(models.Model):
 	sales = models.IntegerField(default = 0)
 	pic_front = models.ImageField(upload_to = './shop/static/shop/itemspic', null = True)
 	pic_back = models.ImageField(upload_to = './shop/static/shop/itemspic', null = True)
-	colour = models.ManyToManyField('Colours')
-	size = models.ManyToManyField('Size')
+	colour = models.ManyToManyField('Colours', null = True, blank = True)
+	size = models.ManyToManyField('Size', null = True, blank = True)
 	limit = models.IntegerField(default = 0)
+	category = models.CharField(max_length = 30, null = True)
 
 	def __unicode__(self):
 		return self.name
