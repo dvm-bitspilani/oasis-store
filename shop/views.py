@@ -39,7 +39,7 @@ def buy(request):
 			uid = request.session['uniqueID']
 			print(request.session['uniqueID'])
 		else: 
-			pass
+			uid = request.session['uniqueID']
 
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
