@@ -96,15 +96,15 @@ def buy(request):
 				# else:
 				# 	request.session['uniqueID'].append(key)
 			# sending data back incase someone does any mischief in price in frontend
-			data = {
-				'itemID': itemID,
-				'price': price,
-				'quantity': quantity,
-				'size': size,
-				'color': color,
-				'name': name
-			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
+				data = {
+					'itemID': itemID,
+					'price': price,
+					'quantity': quantity,
+					'size': size,
+					'color': color,
+					'name': name
+				}
+				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 
 		else:
 			quantity = request.POST['quantity']
@@ -151,35 +151,13 @@ def buy(request):
 				# else:
 				# 	request.session['uniqueID'].append(key)
 			# sending data back incase someone does any mischief in price in frontend
-			data = {
-				'itemID': itemID,
-				'price': price,
-				'quantity': quantity,
-				'name': name
-<<<<<<< HEAD
-				},
-				timeout = None)
-			# if len(request.session['uniqueID']) == 0:
-			# 	request.session['uniqueID'] = [key]
-			# else:
-			# 	request.session['uniqueID'].append(key)
-		# sending data back incase someone does any mischief in price in frontend
-		data = {
-			'itemID': itemID,
-			'price': price,
-			'quantity': quantity,
-			'size': size,
-			'color': color,
-			'name': name
-		}
-		print (cache.keys("*"),uid)
-
-		resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
-=======
-			}
-			resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
-
->>>>>>> 2dac3985173021af47551dc06c28b96d432d3bf6
+				data = {
+					'itemID': itemID,
+					'price': price,
+					'quantity': quantity,
+					'name': name
+					},
+				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 	return JsonResponse(resp)
 	# else:
 	# 	return HttpResponseRedirect('../login')
@@ -297,7 +275,7 @@ You have ordered the following items. Kindly follow the link %s to make the paym
     	hashlib.sha1,
     	).hexdigest()
 
-	b = 'https://www.instamojo.com/bitsoasis16/oasis-professional-shows/'+'?intent=buy&data_Field_5581='+shows+'&data_amount='+str(tt_price)+'&data_email='+str(email)+'&data_quantity='quantity+'&data_readonly=data_amount&data_readonly=data_Field_5581&data_readonly=data_email&data_readonly=data_quantity&data_sign='+mac_calculated
+	b = 'https://www.instamojo.com/bitsoasis16/oasis-professional-shows/'+'?intent=buy&data_Field_5581='+shows+'&data_amount='+str(tt_price)+'&data_email='+str(email)+'&data_quantity='+quantity+'&data_readonly=data_amount&data_readonly=data_Field_5581&data_readonly=data_email&data_readonly=data_quantity&data_sign='+mac_calculated
 
 	email.send()
 
@@ -313,7 +291,7 @@ def getitem(request, itemid):
 		# itemID = request.POST['itemID']
 	item = Item.objects.get(pk = itemid)
 	if item.category != 'ticket':
-	name = item.name
+		name = item.name
 		price = item.price
 		pic_f = str(item.pic_front.url)[4:]
 		pic_b = str(item.pic_back.url)[4:]
