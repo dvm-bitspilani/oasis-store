@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(Item)
 admin.site.register(Colours)
 admin.site.register(Size)
+admin.site.register(Order)

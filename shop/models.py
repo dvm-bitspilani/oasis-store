@@ -11,6 +11,7 @@ class Item(models.Model):
 	pic_back = models.ImageField(upload_to = './shop/static/shop/itemspic', null = True)
 	colour = models.ManyToManyField('Colours')
 	size = models.ManyToManyField('Size')
+	limit = models.IntegerField(default = 0)
 
 	def __unicode__(self):
 		return self.name
@@ -27,4 +28,12 @@ class Size(models.Model):
 	def __unicode__(self):
 		return self.size
 		
+class Order(models.Model):
+	email = models.CharField(max_length = 60)
+	item = models.ForeignKey('Item', null = True)
+	color = models.ForeignKey('Colours', null = True)
+	size = models.ForeignKey('Size', null = True)
+	uniqueid = models.CharField(max_length = 20, null = True)
 
+	def __unicode__(self):
+		return self.email

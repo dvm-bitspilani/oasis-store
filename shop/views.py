@@ -40,7 +40,7 @@ def buy(request):
 			print(request.session['uniqueID'])
 		else: 
 			pass
-			
+
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
 		quantity = request.POST['quantity']
@@ -164,6 +164,7 @@ def checkoutcart(request):
 		itemID = tmpitem['itemID']
 		color = tmpitem['color']
 		itemst = Item.objects.get(itemID = itemID)
+
 		itemst.sales+=1
 
 		cartbody.append('''
@@ -238,21 +239,21 @@ def removeItem(request):
 
 ################################Instamojo Payment Portal###########################################
 
-def final_pay_reg(request):
+def final_pay(request):
 	if request.method == 'POST':
 
 		email = request.POST['email']
 
 		email = ( str(email) )
 
-		b = 'https://www.instamojo.com/bitsoasis16/bits-merchandise/'+'?intent=buy&data_Field_65327='+email+'&data_readonly=data_Field_65327'
+		b = 'https://www.instamojo.com/bitsoasis16/bits-merchandise/'+'?intent=buy&data_Field_65327='+email+'&data_amount='+str(tt_price)+'&data_readonly=data_amount&data_readonly=data_Field_65327'
 
 		return HttpResponseRedirect(b)
 
 	# return render('middlepage.html', context={'email_id':request.GET['email']})
 	return JsonResponse({'message': 'You have successfully made the payment'})
 
-def apirequest_reg(request):
+def apirequest(request):
 	import requests
 	payid=str(request.GET['payment_id'])
 	headers = {'X-Api-Key': '9efcf3131144007821bcbc905dabebc7',
@@ -262,20 +263,26 @@ def apirequest_reg(request):
 	json_ob = r.json()
 	payments = json_ob['payments'][0]
 	amount = payments['amount']
-	try:
-		email = payments['custom_fields']['Field_65327']['value']
-		user=Participant.objects.filter(email_id = email)[0]
-		if int(float(amount)) == 300:
-			user.reg_paid=True
-		user.save()
-	except:
-		ids = payments['custom_fields']['Field_65327']['value'].split('.')
-		no_paid = int(float(amount))/300
-		for i in ids[:no_paid]:
-			user = Participant.objects.get(id = int(i))
-			user.reg_paid=True
-			user.save()
+	# try:
+	# 	email = payments['custom_fields']['Field_65327']['value']
+	# 	user=Participant.objects.filter(email_id = email)[0]
+	# 	if int(float(amount)) == 300:
+	# 		user.reg_paid=True
+	# 	user.save()
+	# except:
+	# 	ids = payments['custom_fields']['Field_65327']['value'].split('.')
+	# 	no_paid = int(float(amount))/300
+	# 	for i in ids[:no_paid]:
+	# 		user = Participant.objects.get(id = int(i))
+	# 		user.reg_paid=True
+	# 		user.save()
 
+	order = Order()
+	order.item = request.POST['itemID']
+	order.email = request.POST['email_id']
+	order.size = size
+	order.color = color
+	order.save()
 	context = {
 		'status' : 1,
 		'message' : 'Payment Successful.'
