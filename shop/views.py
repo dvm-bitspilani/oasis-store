@@ -36,7 +36,6 @@ def buy(request):
 		request.session['uniqueID'] = str(time.time())
 		request.session.modified = True
 		uid = request.session['uniqueID']
-		print(request.session['uniqueID'])
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
 		quantity = request.POST['quantity']
@@ -99,6 +98,8 @@ def buy(request):
 			'color': color,
 			'name': name
 		}
+		print (cache.keys("*"),uid)
+
 		resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 	return JsonResponse(resp)
 	# else:
@@ -108,7 +109,7 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
-	print cache.keys(keys)
+	print cache.keys("*")
 # <<<<<<< HEAD
 # 	cart = cache.get(str(keys))
 # 	resp = []
