@@ -118,3 +118,23 @@ function updateCart(){
   $('.cart-items-no').html($('#cart-list').children().length-1);
   });
 }
+
+function delete_item(ele){
+  console.log(ele);
+  jQuery(function($){
+  item_id=$('.product-name').attr('data-id');
+  var data={
+    cartid:cart_id+item_id,
+  }
+  $.ajax({
+    type:'POST',
+    url:'../../checkout/',
+    data:data,
+    success:function(response){
+        alert(response.message);
+        $(ele).closest('.shopping-cart__item').remove();
+        updateCart();
+    }
+  });
+});
+}
