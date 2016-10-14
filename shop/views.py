@@ -276,7 +276,7 @@ You have ordered the following items. Kindly follow the link %s to make the paym
     	hashlib.sha1,
     	).hexdigest()
 
-	b = 'https://www.instamojo.com/bitsoasis16/oasis-professional-shows/'+'?intent=buy&data_Field_5581='+shows+'&data_amount='+str(tt_price)+'&data_email='+str(email)+'&data_quantity='quantity+'&data_readonly=data_amount&data_readonly=data_Field_5581&data_readonly=data_email@dat_readonly=data_quantity&data_sign='+mac_calculated
+	b = 'https://www.instamojo.com/bitsoasis16/oasis-professional-shows/'+'?intent=buy&data_Field_5581='+shows+'&data_amount='+str(tt_price)+'&data_email='+str(email)+'&data_quantity='quantity+'&data_readonly=data_amount&data_readonly=data_Field_5581&data_readonly=data_email&data_readonly=data_quantity&data_sign='+mac_calculated
 
 	email.send()
 
