@@ -20,6 +20,7 @@ from django.core.urlresolvers import reverse
 from .models import *
 from django.core.cache import cache
 import time
+from random import randint
 
 @csrf_exempt
 def index(request):
@@ -194,7 +195,7 @@ def getcart(request):
 			totalprice+=t_price
 			x+=1
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price,'img': str(getitem.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'],'img': str(getitem.pic_front.url)[4:]})
 		else:
 
 			itemimg = getitem.pic_front.url
@@ -202,7 +203,7 @@ def getcart(request):
 			totalprice+=t_price
 			x+=1
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(getitem.pic_front.url)[4:]})			
+			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'img': str(getitem.pic_front.url)[4:]})			
 	# except next(cache.iter_keys(keys) == None):
 	# 	pass
 
@@ -247,7 +248,6 @@ def checkoutcart(request):
 
 		email = request.POST['email']
 		showlist = request.POST['items']
-		tt_price = request.POST['TotalPrice']
 		quantity = request.POST['quantity']
 
 	# email = request.POST['email_id']
@@ -370,6 +370,7 @@ def apirequest(request):
 	amount = payments['amount']
 	email = payments['email']
 	itemfield = custom_fields_['Field_5581']
+	quantity = str(payments['quantity']).split(',')
 	itemslist = str(itemfield['value']).split(',')
 
 	# try:
@@ -389,8 +390,20 @@ def apirequest(request):
 	order = Order()
 	# order.item = request.POST['itemID']
 	order.email = email
+	tempidlist = str(uuid.uuid1()).strip('-')
+	tmpid = str((',').join(tempidlist))
+	x=0
+	idlist = []
+	while x<10:
+		n = randint(0,9)
+		idlist.append(tmpid[n:n+1])
+		x+=1
+	uniqueid = str((',')join(idlist))	
+
 	for item in itemlist:
 		order.item = item
+		order.quantity = quantity
+		order.uniqueid = uniqueid
 	# order.size = size
 	# order.color = color
 	order.save()

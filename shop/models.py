@@ -35,6 +35,7 @@ class Order(models.Model):
 	color = models.ForeignKey('Colours', null = True)
 	size = models.ForeignKey('Size', null = True)
 	uniqueid = models.CharField(max_length = 20, null = True)
+	quantity = models.CharField(max_length = 10, default = '0')
 
 	def __unicode__(self):
 		return self.email
