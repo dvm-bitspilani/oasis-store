@@ -299,7 +299,7 @@ def getitem(request, itemid):
 		desc = item.description
 
 		# send the user current cart as well..lets say he refreshes the page
-		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all()}
+		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all(), 'category': item.category}
 	else:
 		price = item.price
 		pic_f = str(item.pic_front.url)[4:]
@@ -307,7 +307,7 @@ def getitem(request, itemid):
 		desc = item.description
 
 		# send the user current cart as well..lets say he refreshes the page
-		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc }
+		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc,'category': item.category }
 	return render(request, 'shop/product.html', context)
 
 def getall(request):
