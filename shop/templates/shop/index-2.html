@@ -86,7 +86,8 @@
 <div class="overlay overlay-scale">
 
   <div class="overlay__content">
-    <button type="button" class="overlay-close"> ✕ </button><form id="search-form" class="search-form outer">
+    <button type="button" class="overlay-close"> ✕ </button>
+		<form id="search-form" class="search-form outer">
       <div class="input-group input-group--wd">
         <input type="text" class=" input--full email" placeholder="Enter Your Email">
         <span class="input-group__bar"></span> </div>
@@ -583,6 +584,7 @@
 <script type="text/javascript" src="{% static 'shop/vendor/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'shop/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
 <script type="text/javascript">
+	var cart_id="";
 
 			window.onload = function(){
 				jQuery(function($){
@@ -647,6 +649,38 @@
 							});
 						}
 					});
+
+					$.ajax({
+						type:'GET',
+						url:'./getcart/',
+						success:function(response){
+							dataArr=response['items'];
+							cart_id=response['cart_id'];
+							console.log(dataArr);
+							dataArr.map(function(data){
+								console.log(data);
+							var newItem = $('.default__item').clone();
+							newItem.show();
+							newItem.removeClass('default__item');
+							newItem.find('.shopping-cart__item__info__title').html(data.name);
+							newItem.find('.shopping-cart__item__image img').attr('src',data.img);
+							newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
+							if(data.category!='ticket'){
+								newItem.find('.shopping-cart__item__info__size span').html(data.size);
+								newItem.find('.shopping-cart__item__info__color span').html(data.color);
+							}
+							else{
+								newItem.find('.info__option ').css( 'visibility', 'hidden');
+							}
+							newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
+
+							$('#cart-list').append(newItem);
+						});
+							// console.log('hi');
+							updateCart();
+
+						}
+					})
 				});
 			}
 
@@ -755,6 +789,41 @@
 
 				});
 
+				function delete_item(ele){
+				  console.log(ele);
+				  jQuery(function($){
+				  item_id=$('.product-name').attr('data-id');
+				  var data={
+				    cartid:cart_id+item_id,
+				  }
+				  $.ajax({
+				    type:'POST',
+				    url:'./items/removeitem/',
+				    data:data,
+				    success:function(response){
+				        alert(response.message);
+				        $(ele).closest('.shopping-cart__item').remove();
+				        updateCart();
+				    }
+				  });
+				});
+				}
+
+				function updateCart(){
+					var sum=0;
+					jQuery(function($){
+
+						$('#cart-list').children().map(function(i,e){
+							amt=parseInt($(e).find('.shopping-cart__item__info__price').html());
+							sum=sum+amt;
+						});
+						$('.shopping-cart__total').html(sum);
+						$('.cart-items-no').html($('#cart-list').children().length-1);
+					});
+				}
+</script>
+
+<script>
 </script>
 </body>
 

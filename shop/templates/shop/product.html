@@ -59,7 +59,7 @@
       <div class="input-group input-group--wd">
         <input type="text" class=" input--full email" placeholder="Enter Your Email">
         <span class="input-group__bar"></span> </div>
-      <button class="btn btn--wd text-uppercase wave waves-effect waves-effect">PROCEED</button>
+      <button class="btn btn--wd text-uppercase wave waves-effect waves-effect proceed">PROCEED</button>
     </form>
   </div>
 </div>
@@ -211,6 +211,7 @@
             <div class="divider divider--xs product-info__divider"></div>
             <div class="product-info__description product-description"> {{desc}} </div>
             <div class="divider divider--xs product-info__divider"></div>
+            {% if category != "ticket" %}
             <div class="row">
               <div class="col-xs-6">
 
@@ -233,6 +234,7 @@
               </div>
             </div>
             <div class="divider divider--sm"></div>
+            {% endif %}
             <label>Quantity:</label>
             <div class="outer">
               <div class="input-group-qty pull-left"> <span class="pull-left"> </span>
@@ -466,8 +468,10 @@
 <script src="{% static 'shop/vendor/form/jquery.validate.min.js' %}"></script>
 <!-- Custom -->
 <script src="{% static 'shop/js/custom.js' %}"></script>
+<script>
+var category = "{{category}}";
+</script>
 <script src="{% static 'shop/js/script.js' %}"></script>
-
 </body>
 
 <!-- Mirrored from xena.tonytemplates.com/themeforest/welldone/product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 10 Oct 2016 18:08:54 GMT -->

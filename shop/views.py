@@ -33,13 +33,14 @@ def buy(request):
 	# if user is not None:
 	# print request.session['uniqueID']
 	if request.POST:
+		print request.session['uniqueID']
 		if request.session['uniqueID'] == None:
 			request.session['uniqueID'] = str(time.time())
 			request.session.modified = True
 			uid = request.session['uniqueID']
 			print(request.session['uniqueID'])
 		else:
-			pass
+			uid = request.session['uniqueID']
 
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
@@ -166,7 +167,7 @@ def getcart(request):
 	# user = request.user
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
-	print cache.keys("*")
+	# print cache.keys("*")
 # <<<<<<< HEAD
 # 	cart = cache.get(str(keys))
 # 	resp = []
@@ -189,19 +190,17 @@ def getcart(request):
 		getitem = Item.objects.get(pk = tmpitem['itemID'])
 		if getitem.category != 'ticket':
 			itemimg = getitem.pic_front.url
-			print itemimg
 			totalprice+=t_price
 			x+=1
+			print tmpitem['size']
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price,'img': str(getitem.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'],'size':tmpitem['size'],'color':tmpitem['color'] ,'t_price': t_price,'img': str(getitem.pic_front.url)[4:]})
 		else:
 
 			itemimg = getitem.pic_front.url
-			print itemimg
 			totalprice+=t_price
 			x+=1
-
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'size': tmpitem['size'], 'color': tmpitem['color'], 'img': str(getitem.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'img': str(getitem.pic_front.url)[4:]})
 	# except next(cache.iter_keys(keys) == None):
 	# 	pass
 
@@ -298,15 +297,16 @@ def getitem(request, itemid):
 		desc = item.description
 
 		# send the user current cart as well..lets say he refreshes the page
-		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all()}
+		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc, 'colours': item.colour.all(),'sizes':item.size.all(), 'category': item.category}
 	else:
+		name = item.name
 		price = item.price
 		pic_f = str(item.pic_front.url)[4:]
 		pic_b = str(item.pic_back.url)[4:]
 		desc = item.description
 
 		# send the user current cart as well..lets say he refreshes the page
-		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc }
+		context = {'id':itemid,'name': name, 'price': price, 'pic_f': pic_f, 'pic_b': pic_b, 'desc': desc,'category': item.category }
 	return render(request, 'shop/product.html', context)
 
 def getall(request):
@@ -323,6 +323,7 @@ def getall(request):
 def removeItem(request):
 	cartuid = request.POST['cartid']
 	cache.delete(cartuid)
+	print cache.delete(cartuid)
 
 	return JsonResponse({'message': 'The following item has been removed from the cart'})
 
