@@ -134,14 +134,14 @@ $('.proceed').on('click',function(e){
     quantiy:quantity
   }
   console.log(data);
-  // $.ajax({
-  //   type:'POST',
-  //   url:'../../checkout/',
-  //   data:data,
-  //   success:function(response){
-  //       console.log(response);
-  //   }
-  // });
+  $.ajax({
+    type:'POST',
+    url:'../../checkout/',
+    data:data,
+    success:function(response){
+        console.log(response);
+    }
+  });
 });
 
 });

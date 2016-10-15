@@ -690,7 +690,8 @@
 					});
 
 
-					$('.proceed').click(function(){
+					$('.proceed').on('click',function(e){
+					  e.preventDefault();
 					  var cartItems=$('#cart-list').children();
 					  var items=[],quantity=[];
 					  for(var i=1;i<cartItems.length;i++){
