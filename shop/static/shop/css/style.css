@@ -6504,6 +6504,10 @@ body.fullwidth .header__dropdowns-container {
   overflow: hidden;
   padding: 0 55px 0 15px;
 }
+.shopping-cart__item__info__title h2 a{
+  text-decoration: none;
+  color: inherit;
+}
 .shopping-cart__item__info__title h2 {
   font-size: 1em;
   padding: 0 0 10px;

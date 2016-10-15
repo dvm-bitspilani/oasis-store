@@ -1,6 +1,7 @@
-var cart_id="";
+var cart_id="",getCart;
 window.onload = function(){
-  jQuery(function($){
+  getCart = function(){
+    jQuery(function($){
     // get cart from cache
     $.ajax({
       type:'GET',
@@ -9,12 +10,14 @@ window.onload = function(){
         dataArr=response['items'];
         cart_id=response['cart_id'];
         console.log(dataArr);
+          $('#cart-list').html();
         dataArr.map(function(data){
           console.log(data);
         var newItem = $('.default__item').clone();
         newItem.show();
         newItem.removeClass('default__item');
-        newItem.find('.shopping-cart__item__info__title').html(data.name);
+        newItem.find('.shopping-cart__item__info__title h2 a' ).html(data.name);
+        newItem.find('.shopping-cart__item__info__title h2 a').attr('href','../'+data.itemID);
         newItem.find('.shopping-cart__item__image img').attr('src',data.img);
         newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
         if(data.category!='ticket'){
@@ -34,6 +37,8 @@ window.onload = function(){
       }
     })
   });
+} ;
+getCart();
 }
 
 jQuery(function($){
@@ -72,24 +77,27 @@ $('#add-cart').click(function(){
       if(response.status='True'){
         alert(response.message)
         // add new item
-        var newItem = $('.default__item').clone();
-        newItem.show();
-        newItem.removeClass('default__item');
-        newItem.find('.shopping-cart__item__info__title').html(data.name);
-        newItem.find('.shopping-cart__item__image img').attr('src',data.img);
-        newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
-        if(category!='ticket'){
-          newItem.find('.shopping-cart__item__info__size span').html(data.size);
-          newItem.find('.shopping-cart__item__info__color span').html(data.color);
-        }
-        else{
-          newItem.find('.info__option ').css( 'visibility', 'hidden');
-        }
-        newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
-
-        $('#cart-list').append(newItem);
-        // console.log('hi');
-        updateCart();
+        getCart();
+        // window.location.reload();
+        // var newItem = $('.default__item').clone();
+        // newItem.show();
+        // newItem.removeClass('default__item');
+        // newItem.find('.shopping-cart__item__info__title h2 a').html(data.name);
+        // newItem.find('.shopping-cart__item__info__title h2 a').attr('href','../'+data.itemID);
+        // newItem.find('.shopping-cart__item__image img').attr('src',data.img);
+        // newItem.find('.shopping-cart__item__info__price').html(parseInt(data.price)*parseInt(data.quantity));
+        // if(category!='ticket'){
+        //   newItem.find('.shopping-cart__item__info__size span').html(data.size);
+        //   newItem.find('.shopping-cart__item__info__color span').html(data.color);
+        // }
+        // else{
+        //   newItem.find('.info__option ').css( 'visibility', 'hidden');
+        // }
+        // newItem.find('.shopping-cart__item__info__qty span').html(data.quantity);
+        //
+        // $('#cart-list').append(newItem);
+        // // console.log('hi');
+        // updateCart();
 
       }
 
@@ -106,6 +114,7 @@ $('.icon-clear').click(function(){
 
 $('.proceed').click(function(){
   data={
+    email:$('.email').val(),
 
   }
 });
