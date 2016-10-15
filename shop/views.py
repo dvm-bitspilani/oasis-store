@@ -20,9 +20,14 @@ from django.core.urlresolvers import reverse
 from .models import *
 from django.core.cache import cache
 import time
+from random import randint
 
 @csrf_exempt
 def index(request):
+	if request.session['uniqueID'] == None:
+		request.session['uniqueID'] = str(time.time())
+	else:
+		uid = request.session['uniqueID']
 	return render(request, 'shop/index-2.html')
 
 
@@ -33,7 +38,6 @@ def buy(request):
 	# if user is not None:
 	# print request.session['uniqueID']
 	if request.POST:
-		print request.session['uniqueID']
 		if request.session['uniqueID'] == None:
 			request.session['uniqueID'] = str(time.time())
 			request.session.modified = True
@@ -52,7 +56,7 @@ def buy(request):
 			name = item.name
 			# color = item.colour
 			# key = (str(user.id) + ',' + str(itemID)) since there isnt any user
-			key = (str(uid) + ',' + str(itemID) + ',' + str(size) + str(color))
+			key = (str(uid) + ',' + str(itemID) + ',' + str(size) + ',' + str(color))
 			print(uid,key)
 
 			if cache.has_key(key):
@@ -65,7 +69,8 @@ def buy(request):
 					'size': size,
 					'color': color,
 					'name': name,
-					'executionType': 'buy'
+					'executionType': 'buy',
+					'key': key
 					},
 					timeout = None)
 					# if len(request.session['item']) == 0:
@@ -78,7 +83,8 @@ def buy(request):
 					'quantity': quantity,
 					'size': size,
 					'color': color,
-					'name': name
+					'name': name,
+					'key': key
 				}
 				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 			else:
@@ -89,7 +95,8 @@ def buy(request):
 					'executionType': 'buy',
 					'size': size,
 					'color': color,
-					'name': name
+					'name': name,
+					'key': key
 					},
 					timeout = None)
 				# if len(request.session['uniqueID']) == 0:
@@ -103,7 +110,8 @@ def buy(request):
 					'quantity': quantity,
 					'size': size,
 					'color': color,
-					'name': name
+					'name': name,
+					'key': key
 				}
 				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
 
@@ -200,6 +208,7 @@ def getcart(request):
 			itemimg = getitem.pic_front.url
 			totalprice+=t_price
 			x+=1
+
 			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'img': str(getitem.pic_front.url)[4:]})
 	# except next(cache.iter_keys(keys) == None):
 	# 	pass
@@ -245,7 +254,6 @@ def checkoutcart(request):
 
 		email = request.POST['email']
 		showlist = request.POST['items']
-		tt_price = request.POST['TotalPrice']
 		quantity = request.POST['quantity']
 
 	# email = request.POST['email_id']
@@ -288,6 +296,10 @@ You have ordered the following items. Kindly follow the link %s to make the paym
 def getitem(request, itemid):
 	# if request.POST:
 		# itemID = request.POST['itemID']
+	if request.session['uniqueID'] == None:
+		request.session['uniqueID'] = time.time()
+	else:
+		uid = request.session['uniqueID']
 	item = Item.objects.get(pk = itemid)
 	if item.category != 'ticket':
 		name = item.name
@@ -370,6 +382,7 @@ def apirequest(request):
 	amount = payments['amount']
 	email = payments['email']
 	itemfield = custom_fields_['Field_5581']
+	quantity = str(payments['quantity']).split(',')
 	itemslist = str(itemfield['value']).split(',')
 
 	# try:
@@ -389,8 +402,20 @@ def apirequest(request):
 	order = Order()
 	# order.item = request.POST['itemID']
 	order.email = email
+	tempidlist = str(uuid.uuid1()).strip('-')
+	tmpid = str(('').join(tempidlist))
+	x=0
+	idlist = []
+	while x<10:
+		n = randint(0,9)
+		idlist.append(tmpid[n:n+1])
+		x+=1
+	uniqueid = str(('').join(idlist))
+
 	for item in itemlist:
 		order.item = item
+		order.quantity = quantity
+		order.uniqueid = uniqueid
 	# order.size = size
 	# order.color = color
 	order.save()
