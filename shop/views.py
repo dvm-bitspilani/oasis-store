@@ -219,6 +219,7 @@ import hashlib
 @csrf_exempt
 def checkoutcart(request):
 	# user = request.user
+	print request.POST
 	uid = request.session['uniqueID']
 	keys = str(uid) + "*"
 	cart = cache.get(keys)

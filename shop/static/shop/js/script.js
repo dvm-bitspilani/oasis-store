@@ -3,16 +3,20 @@ window.onload = function(){
   getCart = function(){
     jQuery(function($){
     // get cart from cache
+
+
     $.ajax({
       type:'GET',
       url:'../../getcart/',
       success:function(response){
+        console.log($('#cart-list').children());
+        var defaultItem = $('.default__item').clone();
+        $('#cart-list').empty();
+        $('#cart-list').append(defaultItem);
+        console.log($('#cart-list').children());
         dataArr=response['items'];
         cart_id=response['cart_id'];
-        console.log(dataArr);
-          $('#cart-list').html();
         dataArr.map(function(data){
-          console.log(data);
         var newItem = $('.default__item').clone();
         newItem.show();
         newItem.removeClass('default__item');
@@ -112,11 +116,32 @@ $('.icon-clear').click(function(){
 
 })
 
-$('.proceed').click(function(){
+
+$('.proceed').on('click',function(e){
+  e.preventDefault();
+  var cartItems=$('#cart-list').children();
+  var items=[],quantity=[];
+  for(var i=1;i<cartItems.length;i++){
+    id=$(cartItems[i]).find('.shopping-cart__item__info__title h2 a').attr('href');
+    id=id.substring(id.indexOf('../')+3);
+    items.push(id);
+    qty=$(cartItems[i]).find('.shopping-cart__item__info__qty span');
+    quantity.push(qty);
+  }
   data={
     email:$('.email').val(),
-
+    items:items,
+    quantiy:quantity
   }
+  console.log(data);
+  // $.ajax({
+  //   type:'POST',
+  //   url:'../../checkout/',
+  //   data:data,
+  //   success:function(response){
+  //       console.log(response);
+  //   }
+  // });
 });
 
 });

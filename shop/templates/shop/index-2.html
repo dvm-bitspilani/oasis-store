@@ -687,7 +687,36 @@
 							updateCart();
 
 						}
-					})
+					});
+
+
+					$('.proceed').click(function(){
+					  var cartItems=$('#cart-list').children();
+					  var items=[],quantity=[];
+					  for(var i=1;i<cartItems.length;i++){
+					    id=$(cartItems[i]).find('.shopping-cart__item__info__title h2 a').attr('href');
+					    id=id.substring(id.indexOf('../')+3);
+					    items.push(id);
+					    qty=$(cartItems[i]).find('.shopping-cart__item__info__qty span');
+					    quantity.push(qty);
+					  }
+					  data={
+					    email:$('.email').val(),
+					    items:items,
+					    quantiy:quantity
+					  }
+						console.log(data);
+					  $.ajax({
+					    type:'POST',
+					    url:'../checkout/',
+					    data:data,
+					    success:function(response){
+									console.log(response);
+					    }
+					  });
+					});
+
+					});
 				});
 			}
 
