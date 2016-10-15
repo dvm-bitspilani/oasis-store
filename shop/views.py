@@ -24,10 +24,11 @@ from random import randint
 
 @csrf_exempt
 def index(request):
-	if request.session['uniqueID'] == None:
-		request.session['uniqueID'] = time.time()
-	else:
+	if 'uniqueID' in request.session:
 		uid = request.session['uniqueID']
+	else:
+		request.session['uniqueID'] = time.time()
+		request.session.modified = True
 	return render(request, 'shop/index-2.html')
 
 
@@ -38,13 +39,11 @@ def buy(request):
 	# if user is not None:
 	# print request.session['uniqueID']
 	if request.POST:
-		if request.session['uniqueID'] == None:
-			request.session['uniqueID'] = str(time.time())
+		if 'uniqueID' in request.session:
+			uid = request.session['uniqueID']
+		else:
+			request.session['uniqueID'] = time.time()
 			request.session.modified = True
-			uid = request.session['uniqueID']
-			print(request.session['uniqueID'])
-		else: 
-			uid = request.session['uniqueID']
 
 		itemID = request.POST['itemID']
 		item = Item.objects.get(pk = itemID)
@@ -298,10 +297,13 @@ You have ordered the following items. Kindly follow the link %s to make the paym
 def getitem(request, itemid):
 	# if request.POST:
 		# itemID = request.POST['itemID']
-	if request.session['uniqueID'] == None:
-		request.session['uniqueID'] = time.time()
-	else:
+	if 'uniqueID' in request.session:
 		uid = request.session['uniqueID']
+	else:
+		request.session['uniqueID'] = time.time()
+		request.session.modified = True
+		uid = request.session['uniqueID']
+		
 	item = Item.objects.get(pk = itemid)
 	if item.category != 'ticket':
 		name = item.name
