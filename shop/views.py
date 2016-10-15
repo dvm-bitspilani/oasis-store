@@ -79,7 +79,7 @@ def buy(request):
 				data = {
 					'itemID': itemID,
 					'price': price,
-					'quantity': quantity,
+					'quantity': tmpcachequant,
 					'size': size,
 					'color': color,
 					'name': name,
@@ -141,7 +141,7 @@ def buy(request):
 				data = {
 					'itemID': itemID,
 					'price': price,
-					'quantity': quantity,
+					'quantity': tmpcachequant,
 					'name': name
 				}
 				resp = {'status': True, 'message': item.name + ' added succesfully to the cart', 'data':data}
@@ -201,14 +201,14 @@ def getcart(request):
 			x+=1
 			print tmpitem['size']
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'],'size':tmpitem['size'],'color':tmpitem['color'] ,'t_price': t_price,'img': str(getitem.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'],'category':getitem.category , 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'],'size':tmpitem['size'],'color':tmpitem['color'] ,'t_price': t_price,'img': str(getitem.pic_front.url)[4:]})
 		else:
 
 			itemimg = getitem.pic_front.url
 			totalprice+=t_price
 			x+=1
 
-			resp.append({'itemID': tmpitem['itemID'], 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'img': str(getitem.pic_front.url)[4:]})
+			resp.append({'itemID': tmpitem['itemID'],'category':getitem.category , 'name': tmpitem['name'], 'price': tmpitem['price'], 'quantity': tmpitem['quantity'], 't_price': t_price, 'img': str(getitem.pic_front.url)[4:]})
 	# except next(cache.iter_keys(keys) == None):
 	# 	pass
 
